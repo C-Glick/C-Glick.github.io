@@ -1,9 +1,55 @@
-/**
-*  Template Name: Munter
-*  Template URL: https://templatemag.com/munter-bootstrap-one-page-template/
-*  Author: TemplateMag.com
-*  License: https://templatemag.com/license/
-*/
+.wrapper {
+  /*100vh is the full height of the viewport. */
+  height: 100vh;
+  /* The scaling of the images would add a horizontal scrollbar, so disable x overflow. */
+  overflow-x: hidden;
+  /* Enable scrolling on the page. */
+  overflow-y: auto;
+  /* Set the perspective to 2px. This is essentially the simulated distance from the viewport to transformed objects.*/
+  perspective: 2px;
+}
+
+.section {
+  /* Needed for children to be absolutely positioned relative to the parent. */
+  position: relative;
+  /* The height of the container. Must be set, but it doesn't really matter what the value is. */
+  height: 100vh;
+
+  /* For text formatting. */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-shadow: 0 0 5px #000;
+}
+
+.parallax::after {
+  /* Display and position the pseudo-element */
+  content: " ";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  /* Move the pseudo-element back away from the camera,
+   * then scale it back up to fill the viewport.
+   * Because the pseudo-element is further away, it appears to move more slowly, like in real life. */
+  transform: translateZ(-1px) scale(1.5);
+  /* Force the background image to fill the whole element. */
+  background-size: 100%;
+  /* Keep the image from overlapping sibling elements. */
+  z-index: -1;
+}
+
+.bg1::after {
+  background-image: url('img/background.jpg');
+}
+
+.bg2::after {
+  background-image: url('https://placekitten.com/g/800/600');
+}
+
 
 .font-thin {
   font-family: "Titillium Web", sans-serif;
@@ -18,6 +64,22 @@
 .font-light {
   font-family: "Titillium Web", sans-serif;
   font-weight: 300;
+}
+
+.font-title {
+  color: white;
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 300;
+  font-size: 80pt;
+  text-align: center;
+}
+
+.font-subtitle{
+  color: White;
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 300;
+  font-size: 30pt;
+  text-align: center;
 }
 
 * {
@@ -48,38 +110,7 @@ body {
   text-align: justify;
 }
 
-.navbar {
-  background-color: rgba( 255, 255, 2555, .0);
-  border-bottom: 0 none;
-  font-size: 12px;
-  transition: .25s all linear;
-}
 
-
-
-.navbar .nav a {
-  color: #fff;
-  font-weight: 400;
-  font-size: 16px;
-}
-
-.navbar .nav a:hover, .navbar .nav a:focus {
-  background: none;
-}
-.navbar .active a {
-  border-bottom: 2px solid #1abc9c;
-}
-
-.navbar-scrolled {
-  background-color: rgba( 0, 0, 0, .5);
-}
-
-
-
-.navbar-toggle i {
-  color: #fff;
-  font-size: 22px;
-}
 
 @media (min-width: 768px) and (max-width: 991px) {
   #process .content-row h2 {
@@ -109,482 +140,3 @@ body {
   text-align: center;
 }
 
-#intro {
-  background-image: url('../img/bg1.jpg');
-  color: #ffffff;
-  -webkit-background-size: 100%;
-  -moz-background-size: 100%;
-  -o-background-size: 100%;
-  background-size: 100%;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  width: 100%;
-  background-attachment: relative;
-  background-position: center center;
-}
-
-#intro h1 {
-  padding-top: 130px;
-}
-
-@media (max-width: 991px) {
-  #intro {
-    background-position: -70% 0, 170% 0;
-  }
-}
-
-@media (max-width: 767px) {
-  #intro {
-    background-image: none;
-  }
-}
-
-#home-row-1, #home-row-2 {
-  padding-top: 25px;
-}
-
-#home-row-1 h1 {
-  font-size: 54px;
-}
-
-#home-row-1 h4 {
-  font-size: 32px;
-}
-
-#home-row-2 {
-  font-size: 25px;
-}
-
-#home-row-2 .col-12 {
-  height: 232px;
-  padding-top: 30px;
-}
-
-#home-row-2 .col-12 .home-hover {
-  height: 166px;
-  overflow: hidden;
-  padding-top: 26px;
-  transition: all ease-in .5s;
-}
-
-#home-row-2 .col-12 .home-hover:hover {
-  height: 166px;
-  padding-top: 0;
-}
-
-@media (max-width: 767px) {
-  #home-row-1, #home-row-2 {
-    padding-top: 16px;
-  }
-  #home-row-1 h1 {
-    font-size: 35px;
-  }
-  #home-row-1 h4 {
-    font-size: 21px;
-  }
-  #home-row-2 {
-    font-size: 16px;
-  }
-}
-
-#about-us {
-  background-color: #1abc9c;
-  color: #e4e6e5;
-  padding-top: 90px;
-}
-
-.title-row {
-  font-size: 45px;
-  padding-bottom: 50px;
-}
-
-.line-row .hr {
-  background-color: #e4e6e5;
-  height: 5px;
-  margin: 0 auto;
-  width: 33%;
-}
-
-.subtitle-row {
-  font-size: 35px;
-  padding-bottom: 40px;
-  padding-top: 40px;
-}
-
-.content-row {
-  padding-top: 45px;
-}
-
-.content-row i, #about-row-5 i {
-  display: block;
-  margin: 0 auto;
-  max-height: 100%;
-  max-width: 100%;
-  font-size: 48px;
-}
-
-.content-row h2 {
-  font-size: 28px;
-  padding-bottom: 40px;
-}
-
-.content-row h4 {
-  font-family: "Titillium Web", "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-  font-size: 20px;
-  font-weight: 300;
-}
-
-i {
-  font-size: 80px;
-  color: white;
-}
-
-@media (max-width: 767px) {
-  .title-row {
-    font-size: 34px;
-    padding-bottom: 33px;
-  }
-  .subtitle-row {
-    font-size: 26px;
-    padding-bottom: 26px;
-    padding-top: 26px;
-  }
-  .content-row {
-    padding-top: 29px;
-  }
-  .content-row h2 {
-    font-size: 24px;
-    padding-bottom: 26px;
-  }
-  .content-row h4 {
-    font-size: 20px;
-  }
-}
-
-#portfolio {
-  background-color: #000;
-  margin: 0 auto;
-  overflow: hidden;
-  padding: 0;
-  text-align: left;
-  width: 100%;
-}
-
-#portfolio .col-12 {
-  display: inline-block;
-  margin: 0;
-  padding: 0;
-  width: 25%;
-}
-
-#portfolio a, #portfolio img {
-  display: inline-block;
-  height: 100%;
-  margin: 0 auto;
-  width: 100%;
-}
-
-@media (max-width: 991px) {
-  #portfolio {
-    text-align: center;
-    width: 100%;
-  }
-  #portfolio .row {
-    left: 0 !important;
-    margin: 0;
-    width: 100% !important;
-  }
-  #portfolio .col-12 {
-    height: auto;
-    width: 50%
-  }
-  #portfolio a, #portfolio img {
-    height: auto;
-    max-height: 100%;
-    max-width: 100%;
-    width: auto;
-  }
-}
-
-@media (max-width: 767px) {
-  #portfolio .col-12 {
-    width: 100%;
-  }
-}
-
-#process {
-  background-color: #34495e;
-  color: #e4e6e5;
-  padding-top: 90px;
-}
-
-#process i {
-  font-size: 80px;
-  color: white;
-}
-
-#clients {
-  background-color: #f39c12;
-  color: #e4e6e5;
-  padding-top: 90px;
-}
-
-#contact {
-  background-color: #2f2f2f;
-  color: #e4e6e5;
-  padding-bottom: 50px;
-  padding-top: 90px;
-}
-
-#contact i {
-  font-size: 32px;
-}
-
-@media (max-width: 767px) {
-  #contact {
-    background-image: none;
-  }
-}
-
-#contact .line-row .hr {
-  background-color: #4e4e4e;
-  color: #4e4e4e;
-}
-
-#contact a {
-  color: inherit;
-  outline: none;
-  text-decoration: none;
-}
-
-@media (max-width: 767px) {
-  .with-hover-text {
-    margin-bottom: 2em;
-    margin-top: 1em;
-  }
-}
-
-#contact-row-4 {
-  padding-top: 50px;
-}
-
-#contact-row-4 .col-12 {
-  height: 175px;
-  overflow: hidden;
-  padding-top: 20px;
-  transition: all ease-in .5s;
-}
-
-#contact-row-4 img {
-  display: block;
-  margin: 0 auto;
-  max-height: 100%;
-  max-width: 100%;
-}
-
-#contact-row-4 .col-12:hover {
-  height: 175px;
-  padding-top: 0;
-}
-
-#contact-row-4 .col-12 .hover-text {
-  display: none;
-  font-size: 20px;
-}
-
-
-/* Contact Form */
-
-.contact-form {
-  text-align: left;
-}
-
-.contact-form label {
-   color: #fff;
-}
-
-.contact-form input, .contact-form textarea {
-  padding: 10px 12px;
-  border-radius: 0;
-  box-shadow: none;
-  font-size: 14px;
-  height: auto;
-}
-
-.contact-form .form-send {
-  text-align: center;
-}
-
-.contact-form .form-send button  {
-  background: #1abc9c;
-  border: 0;
-  padding: 10px 30px;
-  color: #fff;
-  transition: 0.4s;
-  cursor: pointer;
-}
-
-.contact-form .form-send button:hover {
-  background: #13dfb7;
-}
-
-.contact-form .validate {
-  display: none;
-  color: red;
-  margin: 0 0 15px 0;
-  font-weight: 400;
-  font-size: 13px;
-}
-
-.contact-form .loading {
-  display: none;
-  color: #555;
-  background: #fff;
-  text-align: center;
-  padding: 15px;
-  margin: 15px 0;
-}
-
-.contact-form .error-message {
-  display: none;
-  color: #fff;
-  background: #ed3c0d;
-  text-align: center;
-  padding: 15px;
-  font-weight: 600;
-  margin: 15px 0;
-}
-
-.contact-form .sent-message {
-  display: none;
-  color: #fff;
-  background: #18d26e;
-  text-align: center;
-  padding: 15px;
-  font-weight: 600;
-  margin: 15px 0;
-}
-
-#slide-7 {
-  background-color: #e4e6e5;
-  color: #4e4e4e;
-  font-size: 35px;
-  line-height: 50px;
-  text-align: center;
-}
-
-#lightbox-out {
-  background-color: rgba( 0, 0, 0, 0.7);
-  height: 100%;
-  position: fixed;
-  width: 100%;
-  z-index: 99999;
-}
-
-.with-hover-text span {
-  display: none;
-}
-
-.zoom {
-  background-image: url('../img/zoom.png');
-  background-position: center center;
-  background-repeat: no-repeat;
-  height: 100%;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 100%;
-  z-index: 999;
-}
-
-#arrows {
-  bottom: 10%;
-  height: 80px;
-  position: fixed;
-  right: 10%;
-  width: 80px;
-  z-index: 1000;
-}
-
-#arrows div {
-  background-image: url('../img/website-arrows.png');
-  cursor: pointer;
-  height: 30px;
-  position: absolute;
-  width: 30px;
-}
-
-#arrows div.disabled {
-  cursor: default;
-}
-
-#arrow-up {
-  background-position: 30px 0;
-  left: 25px;
-  top: 0;
-}
-
-#arrow-up.disabled {
-  background-position: 0 0;
-}
-
-#arrow-down {
-  background-position: 30px -30px;
-  left: 25px;
-  bottom: 0;
-}
-
-#arrow-down.disabled {
-  background-position: 0 -30px;
-}
-
-#arrow-left {
-  background-position: 30px -60px;
-  left: 0;
-  top: 25px;
-}
-
-#arrow-left.disabled {
-  background-position: 0 -60px;
-}
-
-#arrow-right {
-  background-position: 30px -90px;
-  right: 0;
-  top: 25px;
-}
-
-#arrow-right.disabled {
-  background-position: 0 -90px;
-}
-
-.navigation-slide {
-  cursor: pointer;
-  text-align: center;
-}
-
-.navigation-slide-a {
-  color: #fff !important;
-  text-decoration: none !important;
-}
-/* Copyrights */
-
-#copyrights {
-  background: #222222;
-  padding: 20px 0;
-  text-align: center;
-  color: #fff;
-}
-
-#copyrights p {
-  margin-bottom: 5px;
-}
-
-#copyrights a {
-  color: #1abc9c;
-}
-.credits {
-  color: #999;
-}
