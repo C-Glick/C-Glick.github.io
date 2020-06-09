@@ -1,56 +1,52 @@
-.wrapper {
-  /*100vh is the full height of the viewport. */
+.parallax {
+  perspective: 1px;
   height: 100vh;
-  /* The scaling of the images would add a horizontal scrollbar, so disable x overflow. */
   overflow-x: hidden;
-  /* Enable scrolling on the page. */
   overflow-y: auto;
-  /* Set the perspective to 2px. This is essentially the simulated distance from the viewport to transformed objects.*/
-  perspective: 2px;
 }
-
-.section {
-  /* Needed for children to be absolutely positioned relative to the parent. */
-  position: relative;
-  /* The height of the container. Must be set, but it doesn't really matter what the value is. */
-  height: 100vh;
-
-  /* For text formatting. */
+.parallax__layer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.parallax__layer--base {
+  transform: translateZ(0);
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
   text-shadow: 0 0 5px #000;
 }
-
-.parallax::after {
-  /* Display and position the pseudo-element */
-  content: " ";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-
-  /* Move the pseudo-element back away from the camera,
-   * then scale it back up to fill the viewport.
-   * Because the pseudo-element is further away, it appears to move more slowly, like in real life. */
-  transform: translateZ(-1px) scale(1.5);
-  /* Force the background image to fill the whole element. */
-  background-size: 100%;
-  /* Keep the image from overlapping sibling elements. */
-  z-index: -1;
+.parallax__layer--back {
+  transform: translateZ(-1px) scale(2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-shadow: 0 0 5px #000;
+}
+.parallax__layer--deep {
+  transform: translateZ(-2px) scale(3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-shadow: 0 0 5px #000;
+}
+.parallax__group {
+  position: relative;
+  height: 100vh;
+  transform-style: preserve-3d;
 }
 
-.bg1::after {
-  background-image: url('img/background.jpg');
+#group1{
+  z-index: 1;
 }
-
-.bg2::after {
-  background-image: url('https://placekitten.com/g/800/600');
+#group2{
+  z-index: 2;
 }
-
-
 .font-thin {
   font-family: "Titillium Web", sans-serif;
   font-weight: 200;
@@ -82,61 +78,12 @@
   text-align: center;
 }
 
-* {
-  position: relative;
-}
-
-.breaker {
-  clear: both;
-  font-size: 1px;
-  line-height: 1px;
-  height: 1px;
-}
-
-html, body {
-  height: 100%;
-  width: 100%;
-}
-
 body {
+  margin: 0;
   background-color: #2f2f2f;
   font-family: "Titillium Web", sans-serif;
   font-weight: normal;
   overflow-x: hidden;
+  overflow-y: hidden;
   -webkit-font-smoothing: antialiased !important;
 }
-
-.justify-text {
-  text-align: justify;
-}
-
-
-
-@media (min-width: 768px) and (max-width: 991px) {
-  #process .content-row h2 {
-    min-height: 6em;
-  }
-}
-
-@media (max-width: 767px) {
-  .navbar-collapse {
-    background-color: rgba( 0, 0, 0, .8);
-  }
-}
-
-:focus {
-  outline: none;
-}
-
-::-moz-focus-inner {
-  border: 0;
-}
-
-.slide {
-  background-position: center center;
-  background-repeat: no-repeat;
-  padding-bottom: 65px;
-  padding-top: 50px;
-  text-align: center;
-}
-
