@@ -19,7 +19,6 @@
   align-items: center;
   justify-content: center;
   color: white;
-  text-shadow: 0 0 5px #000;
   z-index: 5;
 }
 .parallax__layer--base {
@@ -28,7 +27,6 @@
   align-items: center;
   justify-content: center;
   color: white;
-  text-shadow: 0 0 5px #000;
   z-index: 4;
 }
 .parallax__layer--back {
@@ -37,7 +35,6 @@
   align-items: center;
   justify-content: center;
   color: white;
-  text-shadow: 0 0 5px #000;
   z-index: 3;
 }
 .parallax__layer--deep {
@@ -46,7 +43,6 @@
   align-items: center;
   justify-content: center;
   color: white;
-  text-shadow: 0 0 5px #000;
   z-index: 2;
 }
 .parallax__group {
@@ -101,20 +97,31 @@
   font-weight: 300;
 }
 
+.font-boldTitle{
+  color: white;
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 600;
+  font-size: 6vmax;
+  text-align: center;
+  text-shadow: 0px 2px 5px #000;
+}
+
 .font-title {
   color: white;
   font-family: "Titillium Web", sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 6vmax;
   text-align: center;
+  text-shadow: 0.02em .03em 0.06em #000;
 }
 
 .font-subtitle{
   color: White;
   font-family: "Titillium Web", sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 2vmax;
   text-align: center;
+  text-shadow: 0.02em 0.03em 0.1em #000;
 }
 
 :link{
@@ -123,7 +130,7 @@
 }
 
 :visited{
-  color: rgb(182, 182, 182)
+  color: white;
 }
 
 body {
