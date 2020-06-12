@@ -3,7 +3,7 @@
      width="4117" height="2316"
      viewBox="0 0 4117 2316">
   <filter id="blur" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-    <feGaussianBlur stdDeviation="20 20" edgeMode="duplicate" />
+    <feGaussianBlur stdDeviation="30 30" edgeMode="duplicate" />
     <feComponentTransfer>
       <feFuncA type="discrete" tableValues="1 1" />
     </feComponentTransfer>

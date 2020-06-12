@@ -49,6 +49,39 @@ body {
 }
 /*parallax groups */
 /*group z index pattern: 5, 3, 4, 3, 5, 3 ...*/
+
+
+/* Generating blurred images
+	https://css-tricks.com/the-blur-up-technique-for-loading-background-images/
+
+	1. scale down regular image (1-5%) and save as jpg
+	2. base64 encode the image to get a string use, https://www.base64-image.de/,
+		copy the code "for use in <img> elements"
+	3. modify the following SVG to suit the image, change width, height, and viewbox
+	5. the blur amount can be tweaked by changing the stdDeviation values
+	6. paste the base64 version of the image into the SVG into xlink:href=" ~paste here~ "
+
+	<svg xmlns="http://www.w3.org/2000/svg"
+    	xmlns:xlink="http://www.w3.org/1999/xlink"
+    	width="1500" height="823"
+    	viewBox="0 0 1500 823">
+  	<filter id="blur" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+    	<feGaussianBlur stdDeviation="20 20" edgeMode="duplicate" />
+    	<feComponentTransfer>
+      		<feFuncA type="discrete" tableValues="1 1" />
+    	</feComponentTransfer>
+  	</filter>
+  	<image filter="url(#blur)"
+    	xlink:href="~~~~~PASTE_HERE~~~~~"
+        x="0" y="0"
+        height="100%" width="100%"/>
+	</svg>
+
+	7.save the SVG file and reference it for the background image
+
+*/
+
+
 .parallax_group {
 	position: relative;
 	height: 100vh;
@@ -60,8 +93,24 @@ body {
 	height: 50vh;
 }
 	#group1 .image{
-		background-image:url(../img/title.jpg);
+		background-image: url(../img/title_blur.svg);
+		transform: translateZ(0);
 	}
+	#group1 .image_enhanced{
+		background-image: url(../img/title.jpg);
+		animation: sharpen .5s both;
+	}
+	
+	@keyframes sharpen{
+		from{
+			background-image: filter(url(../img/title.jpg), blur(20px));
+		}
+		to{
+			background-image: filter(url(../img/title.jpg), blur(0px));
+		}
+	}
+	
+
 #group2{
 	z-index: 3;
 	height: 50vh;

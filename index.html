@@ -5,13 +5,13 @@
 	<meta content="width=device-width, initial-scale=1.0" name="viewport">
 
 	<!-- Favicons -->
-	<link href="img/favicon.png" rel="icon">
+	<!--<link href="img/favicon.png" rel="icon">-->
 
 	<!-- Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Titillium+Web:400,600,300,200&subset=latin,latin-ext" rel="stylesheet">
 
 	<!-- Main Stylesheet File -->
-	<link href="css/style.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet" title="MainStyleSheet">
 
 	<!--load jquery-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>	
@@ -20,6 +20,78 @@
 			$("#footer").load("footer.html"); 
 		});
 	</script>
+
+	<!--script for blurred image loading-->
+	<script>
+		window.onload = function loadStuff() {
+		  var win, doc, img, header, enhancedClass;
+		  
+		  // Quit early if older browser (e.g. IE 8).
+		  if (!('addEventListener' in window)) {
+			return;
+		  }
+		  
+		  win = window;
+		  doc = win.document;
+		  img = new Image();
+		  header = doc.querySelector('.image');
+		  enhancedClass = 'image_enhanced';
+		
+		  // Rather convoluted, but parses out the first mention of a background
+		  // image url for the enhanced header, even if the style is not applied.
+		  var bigSrc = (function () {
+			// Find all of the CssRule objects inside the inline stylesheet 
+			var styles;
+			for(j=0; j<document.styleSheets.length; j++){
+				if(document.styleSheets[j].title == "MainStyleSheet"){
+					styles = document.styleSheets[j].cssRules;
+					break;
+				}
+			}
+			// Fetch the background-image declaration...
+			var bgDecl = (function () {
+			  // ...via a self-executing function, where a loop is run
+			  var bgStyle = [];
+			  var i, l = styles.length;
+			  for (i=0; i<l; i++) {
+				  console.log(styles[i].selectorText)
+				// ...checking if the rule is the one targeting the
+				// enhanced header.
+				if (styles[i].selectorText &&
+					styles[i].selectorText.includes(enhancedClass)) {
+				  // If so, set bgDecl to the entire background-image
+				  // value of that rule
+				  bgStyle.push(styles[i].style.backgroundImage);
+				}
+			  }
+			  // ...and return that text.
+			  return bgStyle;
+			}());
+			// Finally, return a match for the URL inside the background-image
+			// by using a fancy regex I Googled up, as long as the bgDecl 
+			// variable is assigned at all.         
+			var sources = [];
+			for(var k=0; k<bgDecl.length; k++){
+				sources[k] = bgDecl[k].match(/(?:\(['|"]?)(.*?)(?:['|"]?\))/)[1];
+			}
+			return sources;
+		  }());
+		
+			for(i=0; i<bigSrc.length; i++){
+				// Assign an onLoad handler to the dummy image *before* assigning the src
+		  		img.onload = function () {
+					header.className += ' ' +enhancedClass;
+		  		};
+		  		// Finally, trigger the whole preloading chain by giving the dummy
+		  		// image its source.
+		  		if (bigSrc[i]) {
+					img.src = bigSrc[i];
+		  		}
+			}
+
+		 
+		};
+		</script>
 
 </head>
 
@@ -34,7 +106,7 @@
 					<div class="font subtitle">- Student - Programmer - Inventor -</div>
 				</div>
 			</div>
-			<div class="parallax_layer base image">
+			<div class="parallax_layer base image image_enhanced">
 				<!--base layer, image only-->
 			</div>			
 		</div>
