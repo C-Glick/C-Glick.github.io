@@ -1,153 +1,152 @@
+/*main settings*/
+body {
+	margin: 0;
+	background-color: #2f2f2f;
+	font-family: "Titillium Web", sans-serif;
+	font-weight: normal;
+	overflow-x: hidden;
+	overflow-y: hidden;
+	-webkit-font-smoothing: antialiased !important;
+}
+
+/* parallax layers */
 .parallax {
-  perspective: 2px;
-  height: 100vh;
-  overflow-x: hidden;
-  overflow-y: auto;
+	perspective: 2px;
+	height: 100vh;
+	overflow-x: hidden;
+	overflow-y: auto;
 }
-.parallax__layer {
-  position: absolute;
-  background: no-repeat center center;
-  background-size: cover;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+/* when making new sections, for each layer make class ="parallax_layer ~layerType~" 
+	add new group number and image */
+.parallax_layer {
+	position: absolute;
+	background: no-repeat center center;
+	background-size: cover;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	/*text*/
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
-.parallax__layer--fore {
-  transform: translateZ(0.5px) scale(0.75);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  z-index: 5;
+.foreground {
+	transform: translateZ(0.5px) scale(0.75);
+	z-index: 5;
 }
-.parallax__layer--base {
-  transform: translateZ(0);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  z-index: 4;
+.base {
+	transform: translateZ(0);
+	z-index: 4;
 }
-.parallax__layer--title {
-  transform: translateZ(0);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  z-index: 4;
-  
+.background {
+	transform: translateZ(-1px) scale(1.5);
+	z-index: 3;
 }
-.parallax__layer--back {
-  transform: translateZ(-1px) scale(1.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  z-index: 3;
+.deep {
+	transform: translateZ(-2px) scale(3);
+	z-index: 2;
 }
-.parallax__layer--deep {
-  transform: translateZ(-2px) scale(3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  z-index: 2;
-}
-.parallax__group {
-  position: relative;
-  height: 100vh;
-  transform-style: preserve-3d;
+/*parallax groups */
+/*group z index pattern: 5, 3, 4, 3, 5, 3 ...*/
+.parallax_group {
+	position: relative;
+	height: 100vh;
+	transform-style: preserve-3d;
 }
 
 #group1{
-  z-index: 5;
-  height: 50vh;
+	z-index: 5;
+	height: 50vh;
 }
+	#group1 .image{
+		background-image:url(../img/title.jpg);
+	}
 #group2{
-  z-index: 3;
-  height: 50vh;
-} 
-#group2 .parallax__layer--back{
-    /*increase scale more to account for reduce height*/
-    transform: translateZ(-1px) scale(2);;
+	z-index: 3;
+	height: 50vh;
 }
+	#group2 .image{
+		background-image:url(../img/background2.jpg);
+	}
+	#group2 .background{
+		/*increase scale more to account for reduce height*/
+		transform: translateZ(-1px) scale(2);;
+	}
 #group3{
-  z-index: 4;
+	z-index: 4;
 }
+	#group3 .image{
+		background-image:url(../img/FRC2019_1.jpg);
+	}
 #group4{
-  z-index: 3;
+	z-index: 3;
 }
+	#group4 .image{
+		background-image:url(../img/FRC2018_1.jpg);
+	}
 #group5{
-  z-index: 5;
+	z-index: 5;
 }
+	#group5 .image{
+		background-image:url(../img/background3.jpg);
+	}
 #group6{
-  z-index: 3;
+	z-index: 3;
 }
+	#group6 .image{
+		background-image:url(../img/background2.jpg);
+	}
 #group7{
-  z-index: 4;
+	z-index: 4;
 }
+	#group7 .image{
+		background-image: url(../img/background-old.jpg);
+	}
 #footer{
-  z-index: 6;
-  height: 20vh;
-}
-.font-thin {
-  font-family: "Titillium Web", sans-serif;
-  font-weight: 200;
+	z-index: 6;
+	height: 20vh;
 }
 
-.font-semibold {
-  font-family: "Titillium Web", sans-serif;
-  font-weight: 600;
+/*fonts*/
+
+.font{
+	font-family: "Titillium Web", sans-serif;
+	color: white;
+	text-align: center;
+}
+.thin {
+	font-weight: 200;
+}
+.semibold {
+	font-weight: 600;
+}
+.light {
+	font-weight: 300;
+}
+.boldTitle{
+	font-weight: 600;
+	font-size: 6vmax;
+	text-shadow: 0px 2px 5px #000;
 }
 
-.font-light {
-  font-family: "Titillium Web", sans-serif;
-  font-weight: 300;
+.title {
+	font-weight: 500;
+	font-size: 6vmax;
+	text-shadow: 0 .01em 0.1em #000;
 }
 
-.font-boldTitle{
-  color: white;
-  font-family: "Titillium Web", sans-serif;
-  font-weight: 600;
-  font-size: 6vmax;
-  text-align: center;
-  text-shadow: 0px 2px 5px #000;
-}
-
-.font-title {
-  color: white;
-  font-family: "Titillium Web", sans-serif;
-  font-weight: 500;
-  font-size: 6vmax;
-  text-align: center;
-  text-shadow: 0.02em .03em 0.06em #000;
-}
-
-.font-subtitle{
-  color: White;
-  font-family: "Titillium Web", sans-serif;
-  font-weight: 500;
-  font-size: 2vmax;
-  text-align: center;
-  text-shadow: 0.02em 0.03em 0.1em #000;
+.subtitle{
+	font-weight: 500;
+	font-size: 2vmax;
+	text-shadow: 0 0.03em 0.1em #000;
 }
 
 :link{
-  color: white;
-  text-decoration: none;
+	color: white;
+	text-decoration: none;
 }
 
 :visited{
-  color: white;
-}
-
-body {
-  margin: 0;
-  background-color: #2f2f2f;
-  font-family: "Titillium Web", sans-serif;
-  font-weight: normal;
-  overflow-x: hidden;
-  overflow-y: hidden;
-  -webkit-font-smoothing: antialiased !important;
+	color: white;
 }
