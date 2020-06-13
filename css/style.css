@@ -66,7 +66,7 @@ body {
     	width="1500" height="823"
     	viewBox="0 0 1500 823">
   	<filter id="blur" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-    	<feGaussianBlur stdDeviation="20 20" edgeMode="duplicate" />
+    	<feGaussianBlur stdDeviation="30 30" edgeMode="duplicate" />
     	<feComponentTransfer>
       		<feFuncA type="discrete" tableValues="1 1" />
     	</feComponentTransfer>
@@ -87,22 +87,15 @@ body {
 	height: 100vh;
 	transform-style: preserve-3d;
 	overflow: hidden;
-	/* grey background so background behind blurred 
-	images is less noticeable when animating*/
-	background-color: rgb(126, 126, 126);
-	/*TODO: put blurred image behind high res image
-	instead of this solid color solution*/
 }
 
 /*sharpening animation, when going from blurred image to full image*/
 @keyframes sharpen{
 	from{
-		filter: blur(10px);
-		transform: scale(1.1);
+		filter: blur(20px);
 	}
 	to{
 		filter: blur(0px);
-		transform: scale(1);
 	}
 }
 
@@ -110,24 +103,44 @@ body {
 	z-index: 5;
 	height: 50vh;
 }
+	/*This is the image that will be displayed when the webpage fist loads
+	it should be small in size. scale up and blur via svg*/
 	#group1 .image{
 		background-image: url(../img/title_blur.svg);
-		transform: translateZ(0) scale(1.1);
+		transform: translateZ(0)
 	}
+	/*this is the full size image to be displayed once everything loads
+	this as the sharpen animation attached to it. Once the image element 
+	receives this class via JS, the image changes and the animation begins*/
 	#group1 .image_enhanced{
-		background-image: url(../img/title.jpg), url(../img/title_blur.svg);
-		animation: sharpen 0.5s both;
+		background-image: url(../img/title.jpg);
+		animation: sharpen 1s both;
 	}	
+	/*fall back image to be displayed behind the normal image,
+		makes the animation look better around the edges*/
+	#group1 .fallback_image{
+		background-image: url(../img/title_blur.svg);
+	}
 
 #group2{
 	z-index: 3;
 	height: 50vh;
 }
+	/*blurred loading image*/
 	#group2 .image{
-		background-image:url(../img/background2.jpg);
+		background-image:url(../img/mandelbrot_1_blur.svg);
+	}
+	/*full size image*/
+	#group2 .image_enhanced{
+		background-image: url(../img/mandelbrot_1.jpg);
+		animation: sharpen 1s both;
+	}
+	/*constant image behind normal image*/
+	#group2 .fallback_image{
+		background-image: url(../img/mandelbrot_1_blur.svg);
 	}
 	#group2 .background{
-		/*increase scale more to account for reduce height*/
+		/*increase scale more to account for reduced height*/
 		transform: translateZ(-1px) scale(2);;
 	}
 #group3{
