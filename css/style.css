@@ -86,6 +86,24 @@ body {
 	position: relative;
 	height: 100vh;
 	transform-style: preserve-3d;
+	overflow: hidden;
+	/* grey background so background behind blurred 
+	images is less noticeable when animating*/
+	background-color: rgb(126, 126, 126);
+	/*TODO: put blurred image behind high res image
+	instead of this solid color solution*/
+}
+
+/*sharpening animation, when going from blurred image to full image*/
+@keyframes sharpen{
+	from{
+		filter: blur(10px);
+		transform: scale(1.1);
+	}
+	to{
+		filter: blur(0px);
+		transform: scale(1);
+	}
 }
 
 #group1{
@@ -94,22 +112,12 @@ body {
 }
 	#group1 .image{
 		background-image: url(../img/title_blur.svg);
-		transform: translateZ(0);
+		transform: translateZ(0) scale(1.1);
 	}
 	#group1 .image_enhanced{
-		background-image: url(../img/title.jpg);
-		animation: sharpen .5s both;
-	}
-	
-	@keyframes sharpen{
-		from{
-			background-image: filter(url(../img/title.jpg), blur(20px));
-		}
-		to{
-			background-image: filter(url(../img/title.jpg), blur(0px));
-		}
-	}
-	
+		background-image: url(../img/title.jpg), url(../img/title_blur.svg);
+		animation: sharpen 0.5s both;
+	}	
 
 #group2{
 	z-index: 3;
@@ -126,8 +134,13 @@ body {
 	z-index: 4;
 }
 	#group3 .image{
-		background-image:url(../img/FRC2019_1.jpg);
+		background-image:url(../img/FRC2019_1_blur.svg);
+		transform: translateZ(0) scale(1.1);
 	}
+	#group3 .image_enhanced{
+		background-image: url(../img/FRC2019_1.jpg);
+		animation: sharpen 0.5s both;
+	}	
 #group4{
 	z-index: 3;
 }

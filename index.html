@@ -24,7 +24,7 @@
 	<!--script for blurred image loading-->
 	<script>
 		window.onload = function loadStuff() {
-		  var win, doc, img, header, enhancedClass;
+		  var win, doc, img, elements, enhancedClass;
 		  
 		  // Quit early if older browser (e.g. IE 8).
 		  if (!('addEventListener' in window)) {
@@ -33,63 +33,48 @@
 		  
 		  win = window;
 		  doc = win.document;
-		  img = new Image();
-		  header = doc.querySelector('.image');
+		  //array to hold images to load
+		  imgs = [];
+		  //array to hold the urls of low res images
+		  var URLs = [];
+		  //populate urls
+		  for(i=0; i<doc.getElementsByClassName("image").length; i++){
+			  URLs[i] = win.getComputedStyle(document.getElementsByClassName("image")[i]).backgroundImage;
+			  imgs[i] = new Image;
+		  }
+		  //get all image elements to modify later
+		  elements = doc.getElementsByClassName("image");
+		  //add this class to the above elements later to start animation
 		  enhancedClass = 'image_enhanced';
 		
-		  // Rather convoluted, but parses out the first mention of a background
-		  // image url for the enhanced header, even if the style is not applied.
-		  var bigSrc = (function () {
-			// Find all of the CssRule objects inside the inline stylesheet 
-			var styles;
-			for(j=0; j<document.styleSheets.length; j++){
-				if(document.styleSheets[j].title == "MainStyleSheet"){
-					styles = document.styleSheets[j].cssRules;
-					break;
-				}
-			}
-			// Fetch the background-image declaration...
-			var bgDecl = (function () {
-			  // ...via a self-executing function, where a loop is run
-			  var bgStyle = [];
-			  var i, l = styles.length;
-			  for (i=0; i<l; i++) {
-				  console.log(styles[i].selectorText)
-				// ...checking if the rule is the one targeting the
-				// enhanced header.
-				if (styles[i].selectorText &&
-					styles[i].selectorText.includes(enhancedClass)) {
-				  // If so, set bgDecl to the entire background-image
-				  // value of that rule
-				  bgStyle.push(styles[i].style.backgroundImage);
-				}
-			  }
-			  // ...and return that text.
-			  return bgStyle;
-			}());
-			// Finally, return a match for the URL inside the background-image
-			// by using a fancy regex I Googled up, as long as the bgDecl 
-			// variable is assigned at all.         
-			var sources = [];
-			for(var k=0; k<bgDecl.length; k++){
-				sources[k] = bgDecl[k].match(/(?:\(['|"]?)(.*?)(?:['|"]?\))/)[1];
-			}
-			return sources;
-		  }());
-		
-			for(i=0; i<bigSrc.length; i++){
-				// Assign an onLoad handler to the dummy image *before* assigning the src
-		  		img.onload = function () {
-					header.className += ' ' +enhancedClass;
+		  //get the urls of the high res images to load
+		  var bigSrc = [];
+		  for(i=0; i<URLs.length; i++){
+			  bigSrc[i] = URLs[i].replace("_blur.svg",".jpg").replace('url("',"").replace('")',"")
+		  }
+		  	//loop through all images to load
+			for(index=0; index<bigSrc.length; index++){
+				//Assign an onLoad handler to the high res image
+				//note this image is not the actual image element that will be displayed
+				//this is just to load the image into memory so it can instantly be displayed
+				//on the page
+		  		imgs[index].onload = function () {
+					var imageIndex
+					//find the element that this image belongs to
+					for(imageIndex=0;imageIndex<imgs.length;imageIndex++){
+						if(imgs[imageIndex] === this){
+							break;
+						}
+					}
+					//add the enhanced class name to the element to switch the image
+					//out (handled in CSS) and play the animation (also in CSS)
+					elements[imageIndex].className += ' ' +enhancedClass;
 		  		};
-		  		// Finally, trigger the whole preloading chain by giving the dummy
-		  		// image its source.
-		  		if (bigSrc[i]) {
-					img.src = bigSrc[i];
+		  		//begin loading the high res image by assigning the source
+		  		if (bigSrc[index]) {
+					imgs[index].src = bigSrc[index];
 		  		}
 			}
-
-		 
 		};
 		</script>
 
@@ -106,7 +91,7 @@
 					<div class="font subtitle">- Student - Programmer - Inventor -</div>
 				</div>
 			</div>
-			<div class="parallax_layer base image image_enhanced">
+			<div class="parallax_layer base image">
 				<!--base layer, image only-->
 			</div>			
 		</div>
