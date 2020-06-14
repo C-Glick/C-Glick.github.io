@@ -126,6 +126,10 @@ body {
 	z-index: 3;
 	height: 50vh;
 }
+	#group2 .background{
+		/*increase scale more to account for reduced height*/
+		transform: translateZ(-1px) scale(2);
+	}
 	/*blurred loading image*/
 	#group2 .image{
 		background-image:url(../img/mandelbrot_1_blur.svg);
@@ -138,10 +142,6 @@ body {
 	/*constant image behind normal image*/
 	#group2 .fallback_image{
 		background-image: url(../img/mandelbrot_1_blur.svg);
-	}
-	#group2 .background{
-		/*increase scale more to account for reduced height*/
-		transform: translateZ(-1px) scale(2);;
 	}
 #group3{
 	z-index: 4;
