@@ -8,6 +8,11 @@ body {
 	overflow-y: hidden;
 	-webkit-font-smoothing: antialiased !important;
 }
+footer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
 
 /* parallax layers */
 .parallax {
@@ -178,7 +183,7 @@ body {
 	#group7 .image{
 		background-image: url(../img/background-old.jpg);
 	}
-#footer{
+#footer_group{
 	z-index: 6;
 	height: 20vh;
 }
@@ -189,6 +194,7 @@ body {
 	font-family: "Titillium Web", sans-serif;
 	color: white;
 	text-align: center;
+	font-size: 16pt;
 }
 .thin {
 	font-weight: 200;
