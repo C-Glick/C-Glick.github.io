@@ -43,14 +43,17 @@ footer {
 .base {
 	transform: translateZ(0);
 	z-index: 4;
+
 }
 .background {
 	transform: translateZ(-1px) scale(1.5);
 	z-index: 3;
+
 }
 .deep {
 	transform: translateZ(-2px) scale(3);
 	z-index: 2;
+
 }
 /*parallax groups */
 /*group z index pattern: 5, 3, 4, 3, 5, 3 ...*/
@@ -90,8 +93,13 @@ footer {
 .parallax_group {
 	position: relative;
 	height: 100vh;
+	/*TODO: overflow hidden causing issues with translate z and preserve-3d but needed for image fading*/
+	overflow:hidden;
 	transform-style: preserve-3d;
-	overflow: hidden;
+}
+
+.image{
+	max-height: 100%;
 }
 
 /*sharpening animation, when going from blurred image to full image*/
