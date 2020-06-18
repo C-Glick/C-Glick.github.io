@@ -86,9 +86,7 @@ footer {
 	</svg>
 
 	7.save the SVG file and reference it for the background image
-
 */
-
 
 .parallax_group {
 	position: relative;
@@ -108,86 +106,25 @@ footer {
 	}
 }
 
-#group1{
-	z-index: 5;
-	height: 50vh;
+#header{
+	z-index: 1;
+	height: 30vh;
 }
-	/*This is the image that will be displayed when the webpage fist loads
-	it should be small in size. scale up and blur via svg*/
-	#group1 .image{
-		background-image: url(../img/title_blur.svg);
-		transform: translateZ(0)
-	}
-	/*this is the full size image to be displayed once everything loads
-	this as the sharpen animation attached to it. Once the image element 
-	receives this class via JS, the image changes and the animation begins*/
-	#group1 .image_enhanced{
-		background-image: url(../img/title.jpg);
-		animation: sharpen 1s both;
-	}	
-	/*fall back image to be displayed behind the normal image,
-		makes the animation look better around the edges*/
-	#group1 .fallback_image{
-		background-image: url(../img/title_blur.svg);
-	}
+  
+#main{
+    z-index: 2;
+    /*TODO: make height dynamic*/
+    height: 1500px;
+    background-color: #2f2f2f;
+    text-align: center;
+}
 
-#group2{
-	z-index: 3;
-	height: 50vh;
-}
-	#group2 .background{
-		/*increase scale more to account for reduced height*/
-		transform: translateZ(-1px) scale(2);
-	}
-	/*blurred loading image*/
-	#group2 .image{
-		background-image:url(../img/mandelbrot_1_blur.svg);
-	}
-	/*full size image*/
-	#group2 .image_enhanced{
-		background-image: url(../img/mandelbrot_1.jpg);
-		animation: sharpen 1s both;
-	}
-	/*constant image behind normal image*/
-	#group2 .fallback_image{
-		background-image: url(../img/mandelbrot_1_blur.svg);
-	}
-#group3{
-	z-index: 4;
-}
-	#group3 .image{
-		background-image:url(../img/FRC2019_1_blur.svg);
-	}
-	#group3 .image_enhanced{
-		background-image: url(../img/FRC2019_1.jpg);
-		animation: sharpen 0.5s both;
-	}	
-#group4{
-	z-index: 3;
-}
-	#group4 .image{
-		background-image:url(../img/FRC2018_1.jpg);
-	}
-#group5{
-	z-index: 5;
-}
-	#group5 .image{
-		background-image:url(../img/background3.jpg);
-	}
-#group6{
-	z-index: 3;
-}
-	#group6 .image{
-		background-image:url(../img/background2.jpg);
-	}
-#group7{
-	z-index: 4;
-}
-	#group7 .image{
-		background-image: url(../img/background-old.jpg);
-	}
+    #main .base{
+        display: block;
+    }
+
 #footer_group{
-	z-index: 6;
+	z-index: 1;
 	height: 20vh;
 }
 
