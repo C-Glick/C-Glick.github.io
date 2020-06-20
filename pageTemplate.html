@@ -1,6 +1,6 @@
 <head>
     <meta charset="utf-8">
-    <title>Page Title</title>
+    <title>Mandelbrot Set Viewer</title>
 
 	<!-- Main Stylesheet File -->
 	<link href="css/PageStyle.css" rel="stylesheet" title="MainStyleSheet">
@@ -109,20 +109,20 @@
 		/*This is the image that will be displayed when the webpage fist loads
 		it should be small in size. scale up and blur via svg*/
 		#header .image{
-			background-image: url(../img/title_blur.svg);
+			background-image: url(../img/mandelbrot_2_blur.svg);
 			transform: translateZ(0)
 		}
 		/*this is the full size image to be displayed once everything loads
 		this as the sharpen animation attached to it. Once the image element 
 		receives this class via JS, the image changes and the animation begins*/
 		#header .image_enhanced{
-			background-image: url(../img/title.jpg);
+			background-image: url(../img/mandelbrot_2.jpg);
 			animation: sharpen 1s both;
 		}	
 		/*fall back image to be displayed behind the normal image,
 			makes the animation look better around the edges*/
 		#header .fallback_image{
-			background-image: url(../img/title_blur.svg);
+			background-image: url(../img/mandelbrot_2_blur.svg);
 		}
 	</style>
 </head>
@@ -130,8 +130,8 @@
 	<div class="parallax">
 		<div id="header" class="parallax_group">
 			<div class="parallax_layer base">
-				<div style="text-align: center;">
-					<div class="font boldTitle">Page Title</div>
+				<div style="margin: auto;">
+					<div class="font boldTitle">The Mandelbrot Set Viewer</div>
 				</div>
 			</div>
 			<!--fallback image to be displayed if something goes wrong
@@ -151,11 +151,27 @@
 		<div id="main" class="parallax_group">
 			<div class="parallax_layer base">
 				<div class="font light">
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam et dignissim ante. Morbi tempus turpis et nunc vestibulum vulputate. In non commodo sapien, sit amet commodo magna. Curabitur erat risus, maximus eu mi sit amet, pellentesque euismod ex. Etiam pellentesque maximus rutrum. Ut placerat enim quis aliquam dapibus. In sit amet iaculis neque. Sed malesuada sapien vel posuere interdum. Nulla facilisi. Donec nisl nisi, faucibus quis lobortis ut, convallis rhoncus mauris. Donec fermentum erat nisi, a tincidunt lacus dictum quis. Vivamus non imperdiet tortor.
-					Praesent sed nulla at diam viverra tincidunt. Fusce egestas risus ac mi semper bibendum. Nullam euismod dui vel tellus faucibus, ac volutpat mi posuere. Maecenas ut est odio. Fusce tincidunt ligula quis urna rhoncus congue. Duis sed magna posuere, iaculis dui ut, pulvinar lorem. Donec ultricies, ipsum ac luctus faucibus, massa turpis tincidunt libero, suscipit aliquam lorem nisi ut erat. Etiam finibus quam ac enim consectetur efficitur. Etiam leo ipsum, dapibus eget magna eget, tempor mollis mi. Mauris cursus feugiat enim viverra venenatis. Praesent ultricies elit sed odio interdum, nec faucibus justo molestie. Etiam ut mi aliquam, interdum magna ut, iaculis ligula. Nullam tortor leo, egestas vel suscipit ac, bibendum sit amet felis.
-					Nulla facilisi. Fusce est urna, lobortis sit amet lobortis sit amet, dictum in augue. Phasellus posuere molestie nulla. Proin imperdiet justo dolor, porttitor mollis libero rutrum in. Donec ultricies porttitor iaculis. Integer non nisl purus. Donec nec volutpat dui. Mauris blandit sed lectus vel lacinia. Phasellus vitae nulla in tellus facilisis porttitor. Suspendisse potenti. In volutpat sapien eros, id accumsan odio facilisis vel. Nunc quis ante justo.
-					Nullam eget magna in dui faucibus gravida. Vestibulum quis semper nulla. Morbi dapibus tristique magna quis pharetra. Nullam sagittis aliquam urna at bibendum. Proin elementum efficitur eros et convallis. Etiam congue bibendum cursus. Praesent sagittis, lorem vitae vulputate rhoncus, augue nisl tempus nibh, in laoreet nisi libero vitae sem. Nullam porta sodales dolor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Phasellus sed diam posuere augue eleifend aliquam. Quisque vitae risus eget eros vulputate fringilla. Morbi pulvinar orci molestie leo interdum, non aliquet elit dignissim.
-					Nunc aliquet, sapien in congue tincidunt, mi arcu finibus metus, sit amet consectetur mi mi eu nisl. Ut vel mattis turpis, at pulvinar mi. Fusce auctor feugiat cursus. Praesent nec sapien interdum, malesuada augue ac, sagittis orci. Nullam sollicitudin mollis urna, a dictum leo mollis quis. Proin ac mattis est. In semper dui diam, a ornare velit facilisis in. Etiam eget tellus ac sapien varius efficitur et eget sapien. Etiam id ante ut turpis elementum ultricies vitae in tortor. Sed nulla dui, varius sed venenatis ac, vehicula et arcu. Aliquam porta, arcu et gravida porta, est purus finibus sem, non vestibulum quam leo ac libero.
+					<table class = "font semibold" style="width:100%">
+						<tr>
+							<td style="float: left">
+								<a href="index.html">Back Home < </a>
+							</td>
+							<td style="float: right;">
+								<a href=https://github.com/C-Glick/Mandelbrot-set>
+									> View on <img src="/img/github.png" style="height:30px; vertical-align: middle; margin-bottom: 0.3em">
+								</a>
+							</td>
+						</tr>
+					</table>
+						
+					<p>
+						<img src="/img/mandelbrot_1.jpg" style="float:right; height:200px">
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam et dignissim ante. Morbi tempus turpis et nunc vestibulum vulputate. In non commodo sapien, sit amet commodo magna. Curabitur erat risus, maximus eu mi sit amet, pellentesque euismod ex. Etiam pellentesque maximus rutrum. Ut placerat enim quis aliquam dapibus. In sit amet iaculis neque. Sed malesuada sapien vel posuere interdum. Nulla facilisi. Donec nisl nisi, faucibus quis lobortis ut, convallis rhoncus mauris. Donec fermentum erat nisi, a tincidunt lacus dictum quis. Vivamus non imperdiet tortor.
+						Praesent sed nulla at diam viverra tincidunt. Fusce egestas risus ac mi semper bibendum. Nullam euismod dui vel tellus faucibus, ac volutpat mi posuere. Maecenas ut est odio. Fusce tincidunt ligula quis urna rhoncus congue. Duis sed magna posuere, iaculis dui ut, pulvinar lorem. Donec ultricies, ipsum ac luctus faucibus, massa turpis tincidunt libero, suscipit aliquam lorem nisi ut erat. Etiam finibus quam ac enim consectetur efficitur. Etiam leo ipsum, dapibus eget magna eget, tempor mollis mi. Mauris cursus feugiat enim viverra venenatis. Praesent ultricies elit sed odio interdum, nec faucibus justo molestie. Etiam ut mi aliquam, interdum magna ut, iaculis ligula. Nullam tortor leo, egestas vel suscipit ac, bibendum sit amet felis.
+						Nulla facilisi. Fusce est urna, lobortis sit amet lobortis sit amet, dictum in augue. Phasellus posuere molestie nulla. Proin imperdiet justo dolor, porttitor mollis libero rutrum in. Donec ultricies porttitor iaculis. Integer non nisl purus. Donec nec volutpat dui. Mauris blandit sed lectus vel lacinia. Phasellus vitae nulla in tellus facilisis porttitor. Suspendisse potenti. In volutpat sapien eros, id accumsan odio facilisis vel. Nunc quis ante justo.
+						Nullam eget magna in dui faucibus gravida. Vestibulum quis semper nulla. Morbi dapibus tristique magna quis pharetra. Nullam sagittis aliquam urna at bibendum. Proin elementum efficitur eros et convallis. Etiam congue bibendum cursus. Praesent sagittis, lorem vitae vulputate rhoncus, augue nisl tempus nibh, in laoreet nisi libero vitae sem. Nullam porta sodales dolor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Phasellus sed diam posuere augue eleifend aliquam. Quisque vitae risus eget eros vulputate fringilla. Morbi pulvinar orci molestie leo interdum, non aliquet elit dignissim.
+						Nunc aliquet, sapien in congue tincidunt, mi arcu finibus metus, sit amet consectetur mi mi eu nisl. Ut vel mattis turpis, at pulvinar mi. Fusce auctor feugiat cursus. Praesent nec sapien interdum, malesuada augue ac, sagittis orci. Nullam sollicitudin mollis urna, a dictum leo mollis quis. Proin ac mattis est. In semper dui diam, a ornare velit facilisis in. Etiam eget tellus ac sapien varius efficitur et eget sapien. Etiam id ante ut turpis elementum ultricies vitae in tortor. Sed nulla dui, varius sed venenatis ac, vehicula et arcu. Aliquam porta, arcu et gravida porta, est purus finibus sem, non vestibulum quam leo ac libero.
+					</p>
 				</div>
 			</div>
 		</div>

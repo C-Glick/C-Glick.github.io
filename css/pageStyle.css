@@ -8,6 +8,27 @@ body {
 	overflow-y: hidden;
 	-webkit-font-smoothing: antialiased !important;
 }
+
+
+#header{
+	z-index: 1;
+	height: 30vh;
+}
+  
+#main{
+    z-index: 2;
+    /*TODO: make height dynamic*/
+    height: 1500px;
+    background-color: #2f2f2f;
+    text-align: center;
+}
+
+	#main .base{
+		display: block;
+		margin: auto;
+		width: 80%;
+	}
+	
 footer {
 	display: flex;
 	align-items: center;
@@ -33,7 +54,6 @@ footer {
 	left: 0;
 	/*text*/
 	display: flex;
-	align-items: center;
 	justify-content: center;
 }
 .foreground {
@@ -63,10 +83,10 @@ footer {
 	https://css-tricks.com/the-blur-up-technique-for-loading-background-images/
 
 	1. scale down regular image (1-5%) and save as jpg
-	2. base64 encode the image to get a string use, https://www.base64-image.de/,
+	2. modify the following SVG to suit the image, change width, height, and viewbox
+	3. the blur amount can be tweaked by changing the stdDeviation values
+	4. base64 encode the image to get a string use, https://www.base64-image.de/,
 		copy the code "for use in <img> elements"
-	3. modify the following SVG to suit the image, change width, height, and viewbox
-	5. the blur amount can be tweaked by changing the stdDeviation values
 	6. paste the base64 version of the image into the SVG into xlink:href=" ~paste here~ "
 
 	<svg xmlns="http://www.w3.org/2000/svg"
@@ -106,22 +126,6 @@ footer {
 	}
 }
 
-#header{
-	z-index: 1;
-	height: 30vh;
-}
-  
-#main{
-    z-index: 2;
-    /*TODO: make height dynamic*/
-    height: 1500px;
-    background-color: #2f2f2f;
-    text-align: center;
-}
-
-    #main .base{
-        display: block;
-    }
 
 #footer_group{
 	z-index: 1;
