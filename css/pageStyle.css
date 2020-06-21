@@ -1,4 +1,4 @@
-/*main settings*/
+/*----------------main settings----------------*/
 body {
 	margin: 0;
 	background-color: #2f2f2f;
@@ -8,26 +8,6 @@ body {
 	overflow-y: hidden;
 	-webkit-font-smoothing: antialiased !important;
 }
-
-
-#header{
-	z-index: 1;
-	height: 30vh;
-}
-  
-#main{
-    z-index: 2;
-    /*TODO: make height dynamic*/
-    height: 1500px;
-    background-color: #2f2f2f;
-    text-align: center;
-}
-
-	#main .base{
-		display: block;
-		margin: auto;
-		width: 80%;
-	}
 	
 footer {
 	display: flex;
@@ -35,105 +15,7 @@ footer {
 	justify-content: center;
 }
 
-/* parallax layers */
-.parallax {
-	perspective: 2px;
-	height: 100vh;
-	overflow-x: hidden;
-	overflow-y: auto;
-}
-/* when making new sections, for each layer make class ="parallax_layer ~layerType~" 
-	add new group number and image */
-.parallax_layer {
-	position: absolute;
-	background: no-repeat center center;
-	background-size: cover;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	/*text*/
-	display: flex;
-	justify-content: center;
-}
-.foreground {
-	transform: translateZ(0.5px) scale(0.75);
-	z-index: 5;
-}
-.base {
-	transform: translateZ(0);
-	z-index: 4;
-
-}
-.background {
-	transform: translateZ(-1px) scale(1.5);
-	z-index: 3;
-
-}
-.deep {
-	transform: translateZ(-2px) scale(3);
-	z-index: 2;
-
-}
-/*parallax groups */
-/*group z index pattern: 5, 3, 4, 3, 5, 3 ...*/
-
-
-/* Generating blurred images
-	https://css-tricks.com/the-blur-up-technique-for-loading-background-images/
-
-	1. scale down regular image (1-5%) and save as jpg
-	2. modify the following SVG to suit the image, change width, height, and viewbox
-	3. the blur amount can be tweaked by changing the stdDeviation values
-	4. base64 encode the image to get a string use, https://www.base64-image.de/,
-		copy the code "for use in <img> elements"
-	6. paste the base64 version of the image into the SVG into xlink:href=" ~paste here~ "
-
-	<svg xmlns="http://www.w3.org/2000/svg"
-    	xmlns:xlink="http://www.w3.org/1999/xlink"
-    	width="1500" height="823"
-    	viewBox="0 0 1500 823">
-  	<filter id="blur" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-    	<feGaussianBlur stdDeviation="30 30" edgeMode="duplicate" />
-    	<feComponentTransfer>
-      		<feFuncA type="discrete" tableValues="1 1" />
-    	</feComponentTransfer>
-  	</filter>
-  	<image filter="url(#blur)"
-    	xlink:href="~~~~~PASTE_HERE~~~~~"
-        x="0" y="0"
-        height="100%" width="100%"/>
-	</svg>
-
-	7.save the SVG file and reference it for the background image
-*/
-
-.parallax_group {
-	position: relative;
-	height: 100vh;
-	/*TODO: overflow hidden causing issues with translate z and preserve-3d but needed for image fading*/
-	/*overflow:hidden;*/
-	transform-style: preserve-3d;
-}
-
-/*sharpening animation, when going from blurred image to full image*/
-@keyframes sharpen{
-	from{
-		filter: blur(20px);
-	}
-	to{
-		filter: blur(0px);
-	}
-}
-
-
-#footer_group{
-	z-index: 1;
-	height: 20vh;
-}
-
-/*fonts*/
-
+/*----------------fonts----------------*/
 .font{
 	font-family: "Titillium Web", sans-serif;
 	color: white;
@@ -174,4 +56,88 @@ footer {
 
 :visited{
 	color: white;
+}
+
+/*----------------parallax layers----------------*/
+.parallax {
+	perspective: 2px;
+	height: 100vh;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+/* when making new groups, for each layer make class ="parallax_layer ~layerType~" 
+	add new group number and image */
+.parallax_layer {
+	position: absolute;
+	background: no-repeat center center;
+	background-size: cover;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	/*text*/
+	display: flex;
+	justify-content: center;
+}
+.foreground {
+	transform: translateZ(0.5px) scale(0.75);
+	z-index: 5;
+}
+.base {
+	transform: translateZ(0);
+	z-index: 4;
+
+}
+.background {
+	transform: translateZ(-1px) scale(1.5);
+	z-index: 3;
+
+}
+.deep {
+	transform: translateZ(-2px) scale(3);
+	z-index: 2;
+
+}
+
+/*sharpening animation, when going from blurred image to full image*/
+@keyframes sharpen{
+	from{
+		filter: blur(20px);
+	}
+	to{
+		filter: blur(0px);
+	}
+}
+
+/*----------------parallax groups----------------*/
+/*group z index pattern: 5, 3, 4, 3, 5, 3 ...*/
+
+.parallax_group {
+	position: relative;
+	height: 100vh;
+	transform-style: preserve-3d;
+}
+
+#header{
+	z-index: 1;
+	height: 30vh;
+}
+  
+#main{
+    z-index: 2;
+    /*TODO: make height dynamic*/
+    height: 1500px;
+    background-color: #2f2f2f;
+    text-align: center;
+}
+
+	#main .base{
+		display: block;
+		margin: auto;
+		width: 80%;
+	}
+
+#footer_group{
+	z-index: 1;
+	height: 20vh;
 }

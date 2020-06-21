@@ -1,4 +1,4 @@
-/*main settings*/
+/*----------------main settings----------------*/
 body {
 	margin: 0;
 	background-color: #2f2f2f;
@@ -14,184 +14,7 @@ footer {
 	justify-content: center;
 }
 
-/* parallax layers */
-.parallax {
-	perspective: 2px;
-	height: 100vh;
-	overflow-x: hidden;
-	overflow-y: auto;
-}
-/* when making new sections, for each layer make class ="parallax_layer ~layerType~" 
-	add new group number and image */
-.parallax_layer {
-	position: absolute;
-	background: no-repeat center center;
-	background-size: cover;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	/*text*/
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-.foreground {
-	transform: translateZ(0.5px) scale(0.75);
-	z-index: 5;
-}
-.base {
-	transform: translateZ(0);
-	z-index: 4;
-
-}
-.background {
-	transform: translateZ(-1px) scale(1.5);
-	z-index: 3;
-
-}
-.deep {
-	transform: translateZ(-2px) scale(3);
-	z-index: 2;
-
-}
-/*parallax groups */
-/*group z index pattern: 5, 3, 4, 3, 5, 3 ...*/
-
-
-/* Generating blurred images
-	https://css-tricks.com/the-blur-up-technique-for-loading-background-images/
-
-	1. scale down regular image (1-5%) and save as jpg
-	2. base64 encode the image to get a string use, https://www.base64-image.de/,
-		copy the code "for use in <img> elements"
-	3. modify the following SVG to suit the image, change width, height, and viewbox
-	5. the blur amount can be tweaked by changing the stdDeviation values
-	6. paste the base64 version of the image into the SVG into xlink:href=" ~paste here~ "
-
-	<svg xmlns="http://www.w3.org/2000/svg"
-    	xmlns:xlink="http://www.w3.org/1999/xlink"
-    	width="1500" height="823"
-    	viewBox="0 0 1500 823">
-  	<filter id="blur" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-    	<feGaussianBlur stdDeviation="30 30" edgeMode="duplicate" />
-    	<feComponentTransfer>
-      		<feFuncA type="discrete" tableValues="1 1" />
-    	</feComponentTransfer>
-  	</filter>
-  	<image filter="url(#blur)"
-    	xlink:href="~~~~~PASTE_HERE~~~~~"
-        x="0" y="0"
-        height="100%" width="100%"/>
-	</svg>
-
-	7.save the SVG file and reference it for the background image
-
-*/
-
-
-.parallax_group {
-	position: relative;
-	height: 100vh;
-	/*TODO: overflow hidden causing issues with translate z and preserve-3d but needed for image fading*/
-	/*overflow:hidden;*/
-	transform-style: preserve-3d;
-}
-
-/*sharpening animation, when going from blurred image to full image*/
-@keyframes sharpen{
-	from{
-		filter: blur(20px);
-	}
-	to{
-		filter: blur(0px);
-	}
-}
-
-#group1{
-	z-index: 5;
-	height: 50vh;
-}
-	/*This is the image that will be displayed when the webpage fist loads
-	it should be small in size. scale up and blur via svg*/
-	#group1 .image{
-		background-image: url(../img/title_blur.svg);
-		transform: translateZ(0)
-	}
-	/*this is the full size image to be displayed once everything loads
-	this as the sharpen animation attached to it. Once the image element 
-	receives this class via JS, the image changes and the animation begins*/
-	#group1 .image_enhanced{
-		background-image: url(../img/title.jpg);
-		animation: sharpen 1s both;
-	}	
-	/*fall back image to be displayed behind the normal image,
-		makes the animation look better around the edges*/
-	#group1 .fallback_image{
-		background-image: url(../img/title_blur.svg);
-	}
-
-#group2{
-	z-index: 3;
-	height: 50vh;
-}
-	#group2 .background{
-		/*increase scale more to account for reduced height*/
-		transform: translateZ(-1px) scale(2);
-	}
-	/*blurred loading image*/
-	#group2 .image{
-		background-image:url(../img/mandelbrot_1_blur.svg);
-	}
-	/*full size image*/
-	#group2 .image_enhanced{
-		background-image: url(../img/mandelbrot_1.jpg);
-		animation: sharpen 1s both;
-	}
-	/*constant image behind normal image*/
-	#group2 .fallback_image{
-		background-image: url(../img/mandelbrot_1_blur.svg);
-	}
-#group3{
-	z-index: 4;
-}
-	#group3 .image{
-		background-image:url(../img/FRC2019_1_blur.svg);
-	}
-	#group3 .image_enhanced{
-		background-image: url(../img/FRC2019_1.jpg);
-		animation: sharpen 0.5s both;
-	}	
-#group4{
-	z-index: 3;
-}
-	#group4 .image{
-		background-image:url(../img/FRC2018_1.jpg);
-	}
-#group5{
-	z-index: 5;
-}
-	#group5 .image{
-		background-image:url(../img/background3.jpg);
-	}
-#group6{
-	z-index: 3;
-}
-	#group6 .image{
-		background-image:url(../img/background2.jpg);
-	}
-#group7{
-	z-index: 4;
-}
-	#group7 .image{
-		background-image: url(../img/background-old.jpg);
-	}
-#footer_group{
-	z-index: 6;
-	height: 20vh;
-}
-
-/*fonts*/
+/*----------------fonts----------------*/
 
 .font{
 	font-family: "Titillium Web", sans-serif;
@@ -233,4 +56,169 @@ footer {
 
 :visited{
 	color: white;
+}
+
+/*----------------parallax layers----------------*/
+.parallax {
+	perspective: 2px;
+	height: 100vh;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+/* when making new sections, for each layer make class ="parallax_layer ~layerType~" 
+	add new group number and image */
+.parallax_layer {
+	position: absolute;
+	background: no-repeat center center;
+	background-size: cover;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	/*text*/
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.foreground {
+	transform: translateZ(0.5px) scale(0.75);
+	z-index: 5;
+}
+.base {
+	transform: translateZ(0);
+	z-index: 4;
+
+}
+.background {
+	transform: translateZ(-1px) scale(1.5);
+	z-index: 3;
+
+}
+.deep {
+	transform: translateZ(-2px) scale(3);
+	z-index: 2;
+
+}
+
+/*sharpening animation, when going from blurred image to full image*/
+@keyframes sharpen{
+	from{
+		filter: blur(20px);
+	}
+	to{
+		filter: blur(0px);
+	}
+}
+
+/*----------------parallax groups----------------*/
+/*group z index pattern: 5, 3, 4, 3, 5, 3 ...*/
+
+.parallax_group {
+	position: relative;
+	height: 100vh;
+	transform-style: preserve-3d;
+}
+
+#group1{
+	z-index: 5;
+	height: 50vh;
+}
+	/*This is the image that will be displayed when the webpage fist loads
+	it should be very small in file size. scale up and blur via svg
+	fall back image to be displayed behind the normal image,
+		makes the animation look better around the edges*/
+	#group1 .image, #group1 .fallback_image{
+		background-image: url(../img/title_blur.svg);
+		transform: translateZ(0)
+	}
+	/*this is the full size image to be displayed once everything loads
+	this has the sharpen animation attached to it. Once the image element 
+	receives this class via JS, the image changes and the animation begins*/
+	#group1 .image_enhanced{
+		background-image: url(../img/title.jpg);
+		animation: sharpen 1s both;
+	}	
+
+#group2{
+	z-index: 3;
+	height: 50vh;
+}
+	#group2 .background{
+		/*increase scale more to account for reduced height*/
+		transform: translateZ(-1px) scale(2);
+	}
+	/*blurred loading image, and fallback image*/
+	#group2 .image, #group2 .fallback_image{
+		background-image:url(../img/mandelbrot_1_blur.svg);
+	}
+	/*full size image*/
+	#group2 .image_enhanced{
+		background-image: url(../img/mandelbrot_1.jpg);
+		animation: sharpen 1s both;
+	}
+	
+#group3{
+	z-index: 4;
+}
+	/*blurred loading image, and fallback image*/
+	#group3 .image, #group3 .fallback_image{
+		background-image:url(../img/FRC2019_1_blur.svg);
+	}
+	/*full size image*/
+	#group3 .image_enhanced{
+		background-image: url(../img/FRC2019_1.jpg);
+		animation: sharpen 1s both;
+	}	
+#group4{
+	z-index: 3;
+}
+	/*blurred loading image, and fallback image*/
+	#group4 .image, #group4 .fallback_image{
+		background-image:url(../img/FRC2018_1.jpg);
+	}
+	/*full size image*/
+	#group4 .image_enhanced{
+		background-image: url(../img/FRC2018_1.jpg);
+		animation: sharpen 1s both;
+	}	
+#group5{
+	z-index: 5;
+}
+	/*blurred loading image, and fallback image*/
+	#group5 .image, #group5 .fallback_image{
+		background-image:url(../img/background3.jpg);
+	}
+	/*full size image*/
+	#group5 .image_enhanced{
+		background-image: url(../img/background3.jpg);
+		animation: sharpen 1s both;
+	}	
+#group6{
+	z-index: 3;
+}
+	/*blurred loading image, and fallback image*/
+	#group6 .image, #group6 .fallback_image{
+		background-image:url(../img/background2.jpg);
+	}
+	/*full size image*/
+	#group6 .image_enhanced{
+		background-image: url(../img/background2.jpg);
+		animation: sharpen 1s both;
+	}	
+#group7{
+	z-index: 4;
+}
+	/*blurred loading image, and fallback image*/
+	#group7 .image, #group7 .fallback_image{
+		background-image:url(../img/background-old.jpg);
+	}
+	/*full size image*/
+	#group7 .image_enhanced{
+		background-image: url(../img/background-old.jpg);
+		animation: sharpen 1s both;
+	}	
+
+#footer_group{
+	z-index: 6;
+	height: 20vh;
 }
