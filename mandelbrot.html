@@ -120,7 +120,7 @@
 		</div>
 
 		<div id="main" class="parallax_group">
-			<div class="parallax_layer base">
+			<div class="parallax_layer base" style="position: relative;">
 				<div class="font light">
 					<table class = "font semibold" style="width:100%">
 						<tr>
@@ -135,7 +135,7 @@
 						</tr>
 					</table>
 
-					<div id="player"></div>
+					<div id="player" style="width: 50%; max-width:50em; height:auto;"></div>
 					<script>
 					  var tag = document.createElement('script');
 					  tag.src = "https://www.youtube.com/iframe_api";
@@ -145,6 +145,7 @@
 					  var player;
 					  function onYouTubeIframeAPIReady() {
 						player = new YT.Player('player', {
+							//change video to play here
 							videoId: 'OWF8KUbf1Rw',
 							playerVars: {
 								modestbranding: 1,
@@ -156,15 +157,18 @@
 								autohide: 0,
 								origin: window.location.origin
 							},
+							//events to keep track of
 							events: {
 								'onReady': onPlayerReady,
 								'onStateChange': onPlayerStateChange
 							}
 						  });
 						}
+						//autoplay
 						function onPlayerReady(event) {
 							event.target.playVideo();
 						}
+						//auto looping
 						function onPlayerStateChange(event) {
 							if (event.data === YT.PlayerState.ENDED) {
 								player.playVideo(); 
@@ -173,7 +177,7 @@
 					</script>
 
 					<p>
-						<img src="/img/mandelbrot_1.jpg" style="float:right; height:200px">
+						<img src="/img/mandelbrot_1.jpg" style="float:right; width: 70%; max-width: 50em; height: auto">
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam et dignissim ante. Morbi tempus turpis et nunc vestibulum vulputate. In non commodo sapien, sit amet commodo magna. Curabitur erat risus, maximus eu mi sit amet, pellentesque euismod ex. Etiam pellentesque maximus rutrum. Ut placerat enim quis aliquam dapibus. In sit amet iaculis neque. Sed malesuada sapien vel posuere interdum. Nulla facilisi. Donec nisl nisi, faucibus quis lobortis ut, convallis rhoncus mauris. Donec fermentum erat nisi, a tincidunt lacus dictum quis. Vivamus non imperdiet tortor.
 						Praesent sed nulla at diam viverra tincidunt. Fusce egestas risus ac mi semper bibendum. Nullam euismod dui vel tellus faucibus, ac volutpat mi posuere. Maecenas ut est odio. Fusce tincidunt ligula quis urna rhoncus congue. Duis sed magna posuere, iaculis dui ut, pulvinar lorem. Donec ultricies, ipsum ac luctus faucibus, massa turpis tincidunt libero, suscipit aliquam lorem nisi ut erat. Etiam finibus quam ac enim consectetur efficitur. Etiam leo ipsum, dapibus eget magna eget, tempor mollis mi. Mauris cursus feugiat enim viverra venenatis. Praesent ultricies elit sed odio interdum, nec faucibus justo molestie. Etiam ut mi aliquam, interdum magna ut, iaculis ligula. Nullam tortor leo, egestas vel suscipit ac, bibendum sit amet felis.
 						Nulla facilisi. Fusce est urna, lobortis sit amet lobortis sit amet, dictum in augue. Phasellus posuere molestie nulla. Proin imperdiet justo dolor, porttitor mollis libero rutrum in. Donec ultricies porttitor iaculis. Integer non nisl purus. Donec nec volutpat dui. Mauris blandit sed lectus vel lacinia. Phasellus vitae nulla in tellus facilisis porttitor. Suspendisse potenti. In volutpat sapien eros, id accumsan odio facilisis vel. Nunc quis ante justo.
@@ -186,7 +190,7 @@
 
 		<div id="footer_group" class="parallax_group">
 			<div class="parallax_layer base">
-				<div id="footer"></div>
+				<div id="footer" style="display: flex; justify-content: center; align-items: center;"></div>
 			</div>
 		</div>
 	</div>

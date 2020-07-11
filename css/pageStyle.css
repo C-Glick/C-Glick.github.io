@@ -126,7 +126,7 @@ footer {
 #main{
     z-index: 2;
     /*TODO: make height dynamic*/
-    height: 1500px;
+    height: auto;
     background-color: #2f2f2f;
     text-align: center;
 }
