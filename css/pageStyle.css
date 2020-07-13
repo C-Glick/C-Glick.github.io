@@ -8,6 +8,24 @@ body {
 	overflow-y: hidden;
 	-webkit-font-smoothing: antialiased !important;
 }
+
+#header{
+	z-index: 1;
+	height: 30vh;
+}
+  
+#main{
+    z-index: 2;
+    height: auto;
+    background-color: #2f2f2f;
+    text-align: center;
+}
+
+	#main .base{
+		display: block;
+		margin: auto;
+		width: 80%;
+	}
 	
 footer {
 	display: flex;
@@ -54,9 +72,20 @@ footer {
 	text-decoration: none;
 }
 
+p :link{
+	color: rgb(75, 75, 255);
+	text-decoration: solid;
+}
+
 :visited{
 	color: white;
 }
+
+p :visited{
+	color: rgb(150, 39, 150);
+	text-decoration: solid;
+}
+
 
 /*----------------parallax layers----------------*/
 .parallax {
@@ -118,26 +147,9 @@ footer {
 	transform-style: preserve-3d;
 }
 
-#header{
-	z-index: 1;
-	height: 30vh;
-}
-  
-#main{
-    z-index: 2;
-    /*TODO: make height dynamic*/
-    height: auto;
-    background-color: #2f2f2f;
-    text-align: center;
-}
-
-	#main .base{
-		display: block;
-		margin: auto;
-		width: 80%;
-	}
 
 #footer_group{
 	z-index: 1;
-	height: 20vh;
+	height: 15vh;
+	background-color: #242424;
 }

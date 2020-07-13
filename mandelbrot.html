@@ -9,6 +9,10 @@
 	<!-- Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Titillium+Web:400,600,300,200&subset=latin,latin-ext" rel="stylesheet">
 
+	<!--Math functions rendering-->
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
     <!--load jquery-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>	
 	<script>
@@ -176,14 +180,35 @@
 						}
 					</script>
 
-					<p>
-						<img src="/img/mandelbrot_1.jpg" style="float:right; width: 70%; max-width: 50em; height: auto">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam et dignissim ante. Morbi tempus turpis et nunc vestibulum vulputate. In non commodo sapien, sit amet commodo magna. Curabitur erat risus, maximus eu mi sit amet, pellentesque euismod ex. Etiam pellentesque maximus rutrum. Ut placerat enim quis aliquam dapibus. In sit amet iaculis neque. Sed malesuada sapien vel posuere interdum. Nulla facilisi. Donec nisl nisi, faucibus quis lobortis ut, convallis rhoncus mauris. Donec fermentum erat nisi, a tincidunt lacus dictum quis. Vivamus non imperdiet tortor.
-						Praesent sed nulla at diam viverra tincidunt. Fusce egestas risus ac mi semper bibendum. Nullam euismod dui vel tellus faucibus, ac volutpat mi posuere. Maecenas ut est odio. Fusce tincidunt ligula quis urna rhoncus congue. Duis sed magna posuere, iaculis dui ut, pulvinar lorem. Donec ultricies, ipsum ac luctus faucibus, massa turpis tincidunt libero, suscipit aliquam lorem nisi ut erat. Etiam finibus quam ac enim consectetur efficitur. Etiam leo ipsum, dapibus eget magna eget, tempor mollis mi. Mauris cursus feugiat enim viverra venenatis. Praesent ultricies elit sed odio interdum, nec faucibus justo molestie. Etiam ut mi aliquam, interdum magna ut, iaculis ligula. Nullam tortor leo, egestas vel suscipit ac, bibendum sit amet felis.
-						Nulla facilisi. Fusce est urna, lobortis sit amet lobortis sit amet, dictum in augue. Phasellus posuere molestie nulla. Proin imperdiet justo dolor, porttitor mollis libero rutrum in. Donec ultricies porttitor iaculis. Integer non nisl purus. Donec nec volutpat dui. Mauris blandit sed lectus vel lacinia. Phasellus vitae nulla in tellus facilisis porttitor. Suspendisse potenti. In volutpat sapien eros, id accumsan odio facilisis vel. Nunc quis ante justo.
-						Nullam eget magna in dui faucibus gravida. Vestibulum quis semper nulla. Morbi dapibus tristique magna quis pharetra. Nullam sagittis aliquam urna at bibendum. Proin elementum efficitur eros et convallis. Etiam congue bibendum cursus. Praesent sagittis, lorem vitae vulputate rhoncus, augue nisl tempus nibh, in laoreet nisi libero vitae sem. Nullam porta sodales dolor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Phasellus sed diam posuere augue eleifend aliquam. Quisque vitae risus eget eros vulputate fringilla. Morbi pulvinar orci molestie leo interdum, non aliquet elit dignissim.
-						Nunc aliquet, sapien in congue tincidunt, mi arcu finibus metus, sit amet consectetur mi mi eu nisl. Ut vel mattis turpis, at pulvinar mi. Fusce auctor feugiat cursus. Praesent nec sapien interdum, malesuada augue ac, sagittis orci. Nullam sollicitudin mollis urna, a dictum leo mollis quis. Proin ac mattis est. In semper dui diam, a ornare velit facilisis in. Etiam eget tellus ac sapien varius efficitur et eget sapien. Etiam id ante ut turpis elementum ultricies vitae in tortor. Sed nulla dui, varius sed venenatis ac, vehicula et arcu. Aliquam porta, arcu et gravida porta, est purus finibus sem, non vestibulum quam leo ac libero.
-					</p>
+					<p style="text-align: justify;">
+						<img src="/img/mandelbrot_1.jpg" style="float:right; width: 70%; max-width: 50em; height: auto; padding: 1em;">
+						The Mandelbrot set is a special fractal that was first discovered by Benoit Mandelbrot in 1980 (although there is some debate on who discovered it first). <br>
+						<br>
+						The Mandelbrot set is displayed on the complex plane where the x-axis represents all real numbers, 
+						similar to a typical number line, and the y-axis represents imaginary numbers. 
+						The fractal comes out of a deceptively simple equation,  
+						\(z_{n+1} = z_n^2 + c \) where \(z\) and \(c\) are complex numbers. \(z\)’s value 
+						starts as 0 and \(c\)’s value is the point on the complex plane to test.<br>
+						<br>
+						You then iterate the equation many times, noting the absolute value (distance from the origin) of 
+						\(z\). The value can either grow to infinity or stay bounded near 0. If the value remains 
+						bounded, it is considered to be within the Mandelbrot set and is colored black within the graph. 
+						All the other colors are derived from how quickly that point diverges, measured by how many 
+						iterations are needed to exceed an arbitrary threshold (2 in this case). In order to say 
+						that a specific \(c\) value is bounded, we must iterate to a limit, else the calculation 
+						would continue forever! We can increase this limit of iterations, and in doing so, 
+						discover points on the graph that were previously thought to be bounded that are actually unbounded.<br>
+						<br>
+						I was first introduced to this mathematical concept by a popular YouTube channel named <a href="https://www.youtube.com/c/vsauce1" target="_blank">Vsauce</a>. 
+						After watching his <a href="https://www.youtube.com/watch?v=MwjsO6aniig" target="_blank">video</a> I decided I wanted to try to write a program in Java that would generate 
+						a graph of the Mandelbrot set. I had to learn about 2D graphics rendering in Java in order to 
+						properly draw the graph. My first attempts after a month were not very successful. However, after 
+						some work debugging and more research, I was able to produce my first black and white image of 
+						the Mandelbrot set.<br>
+						<img src="/img/mandelbrot_3.png" style="width: 40%; max-width: 50em; height: auto; padding: 1em;">
+						<img src="/img/mandelbrot_4.jpg" style="width: 40%; max-width: 50em; height: auto; padding: 1em;">
+						
+						</p>
 				</div>
 			</div>
 		</div>
