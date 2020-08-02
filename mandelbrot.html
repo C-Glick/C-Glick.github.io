@@ -138,8 +138,13 @@
 							</td>
 						</tr>
 					</table>
+					
+					<div class="font subtitle" style="text-decoration: underline;">What is the Mandelbrot set?</div>
 
-					<div id="player" style="width: 50%; max-width:50em; height:auto;"></div>
+					<div class="videoContainer" style="position: relative; padding-bottom: 28.25%; height:0; width:50%; float: right; margin:1em;">
+						<div id="player" style="position:absolute; top:0; left:0; width:100%; height:100%;"></div>
+					</div>
+					
 					<script>
 					  var tag = document.createElement('script');
 					  tag.src = "https://www.youtube.com/iframe_api";
@@ -192,23 +197,28 @@
 						<br>
 						You then iterate the equation many times, noting the absolute value (distance from the origin) of 
 						\(z\). The value can either grow to infinity or stay bounded near 0. If the value remains 
-						bounded, it is considered to be within the Mandelbrot set and is colored black within the graph. 
+						bounded, it is considered to be within the Mandelbrot set and is colored black on the graph. 
 						All the other colors are derived from how quickly that point diverges, measured by how many 
 						iterations are needed to exceed an arbitrary threshold (2 in this case). In order to say 
-						that a specific \(c\) value is bounded, we must iterate to a limit, else the calculation 
+						that a specific \(c\) value is bounded, we must set a limit, else the calculation 
 						would continue forever! We can increase this limit of iterations, and in doing so, 
-						discover points on the graph that were previously thought to be bounded that are actually unbounded.<br>
-						<br>
+						discover points on the graph that were previously thought to be bounded that are actually unbounded.
 						I was first introduced to this mathematical concept by a popular YouTube channel named <a href="https://www.youtube.com/c/vsauce1" target="_blank">Vsauce</a>. 
 						After watching his <a href="https://www.youtube.com/watch?v=MwjsO6aniig" target="_blank">video</a> I decided I wanted to try to write a program in Java that would generate 
-						a graph of the Mandelbrot set. I had to learn about 2D graphics rendering in Java in order to 
+						a graph of the Mandelbrot set. 
+					</p>
+
+					<div class="font subtitle" style="text-decoration: underline;">The Application</div>
+
+					<p style="text-align: justify;">
+						I had to learn about 2D graphics rendering in Java in order to 
 						properly draw the graph. My first attempts after a month were not very successful. However, after 
 						some work debugging and more research, I was able to produce my first black and white image of 
 						the Mandelbrot set.<br>
-						<img src="/img/mandelbrot_3.png" style="width: 40%; max-width: 50em; height: auto; padding: 1em;">
-						<img src="/img/mandelbrot_4.jpg" style="width: 40%; max-width: 50em; height: auto; padding: 1em;">
+					</p>
+					<img src="/img/mandelbrot_3.png" style="width: 40%; max-width: 50em; height: auto; padding: 1em;">
+					<img src="/img/mandelbrot_4.jpg" style="width: 40%; max-width: 50em; height: auto; padding: 1em;">
 						
-						</p>
 				</div>
 			</div>
 		</div>
