@@ -12,48 +12,53 @@ const useStyles = makeStyles({
     maxWidth: 645,
     background:"rgba(0,0,0,0.5)",
     margin: "20px",
-    transition: "transform 0.15s ease-in-out"
+    transition: "transform 0.15s ease-in-out"     //for zoom on hover
   },
+
   media: {
     height: 440,
   },
+
   title: {
     fontFamily: 'Roboto',
     fontWeight: "bold",
     fontSize: "2rem",
     color: "#fff",
   },
+
   desc:{
     fontFamily: 'Roboto',
     fontSize: "1rem",
     color: "#ddd",
   },
+
   cardHovered:{
-    transform: "scale3d(1.05, 1.05, 1)"
+    transform: "scale3d(1.05, 1.05, 1)"       //enlarge card when hovering over it
   },
+
   wrapper:{
-      minHeight:500
+      minHeight:500     //ensures wrapper is appropriate size for beginning display animation
   }
 });
 
-export default function ImageCard({ project, startAnim }) {
+export default function ImageCard({ project }) {
   const classes = useStyles();
-  const [state, setState] = useState({
+  const [state, setState] = useState({    //state for zoom on hover
     raised:false,
     shadow:1,
-  })
+  });
   
   //control display effect
   const { ref, inView, entry } = useInView({
-      threshold: 0.7,     //percent of reference div that needs to be visible to show card
-      triggerOnce: true,
-      
-  })
+      threshold: 0.65,     //percent of reference div that needs to be visible to show card
+      triggerOnce: true,  
+  });
 
   return (
-    <div ref={ref} className={classes.wrapper}>
+    <div ref={ref} className={classes.wrapper}>   
+    {/* wrapper around card to detect if it's on screen and needs to be shown, read from inView */}
         <Collapse in={inView} 
-        {...(inView ? { timeout: project.time } : {})} >
+        {...(inView ? { timeout: project.time } : {})} >    
             <Card className={classes.root} classes={{root: state.raised ? classes.cardHovered : ""}}
             onMouseOver={()=>setState({ raised: true, shadow:3})} 
             onMouseOut={()=>setState({ raised:false, shadow:1 })} 
@@ -64,20 +69,20 @@ export default function ImageCard({ project, startAnim }) {
                 title={project.title}
                 />
                 <CardContent>
-                <Typography 
-                    gutterBottom 
-                    variant="h5" 
-                    component="h2" 
-                    className={classes.title}>
-                    {project.title}
-                </Typography>
-                <Typography 
-                    variant="body2" 
-                    color="textSecondary" 
-                    component="p"
-                    className={classes.desc} >
-                    {project.desc}
-                </Typography>
+                  <Typography 
+                      gutterBottom 
+                      variant="h5" 
+                      component="h2" 
+                      className={classes.title}>
+                      {project.title}
+                  </Typography>
+                  <Typography 
+                      variant="body2" 
+                      color="textSecondary" 
+                      component="p"
+                      className={classes.desc} >
+                      {project.desc}
+                  </Typography>
                 </CardContent>
             </Card>
         </Collapse>

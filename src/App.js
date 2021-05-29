@@ -1,28 +1,16 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles"
 import { CssBaseline } from "@material-ui/core";
-import Header from "./components/Header";
-import ProjectCards from "./components/ProjectCards";
+import NavBar from "./components/NavBar"
+
+import {Route, Switch} from "react-router-dom"
+import LandingPage from "./pages/LandingPage"
+import AboutPage from "./pages/AboutPage"
 
 const useStyles = makeStyles((theme) => ({
-  //styling for root div, including size and background image
-  root: {
-    minHeight:"100vh",
-    backgroundImage: 'url(/img/oldtest.jpg)',
-    backgroundSize: "cover",
-    backgroundRepeat:"no-repeat",
-    backgroundPosition:"center",
-    backgroundAttachment:"fixed", //image does not scroll with page
-    [theme.breakpoints.down("sm")]:{
-      backgroundPosition: "30% 20%",    //this didnt work, need to fix white bar when scrolling on android
-      willChange: "transform"
-    }
-  },
-
-  spacer:{
-    height: "20vh",
+  root:{
+    background: 'rgba(40,40,40,1)',
   }
-
 }));
 
 export default function App() {
@@ -31,9 +19,14 @@ export default function App() {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <Header />
-      <ProjectCards />
-      <div className={classes.spacer}></div>
+      <NavBar />
+      <Switch>  {/* renders only on of the following components */}
+        <Route exact path="/"><LandingPage /></Route>
+        <Route path="/about"><AboutPage /></Route>
+        <Route path="/:id">
+          <div style={{position: "absolute", top: "50%", left: "50%"}}><h1>404</h1></div>   {/* TODO 404 page */}
+        </Route>
+      </Switch>
     </div>
   );
 }
