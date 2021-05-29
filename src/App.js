@@ -11,8 +11,12 @@ const useStyles = makeStyles((theme) => ({
     backgroundImage: 'url(/img/oldtest.jpg)',
     backgroundSize: "cover",
     backgroundRepeat:"no-repeat",
-    backgroundPosition:"top",
-    backgroundAttachment:"fixed"  //image does not scroll with page
+    backgroundPosition:"center",
+    backgroundAttachment:"fixed", //image does not scroll with page
+    [theme.breakpoints.down("sm")]:{
+      backgroundPosition: "30% 20%",    //this didnt work, need to fix white bar when scrolling on android
+      willChange: "transform"
+    }
   },
 
   spacer:{

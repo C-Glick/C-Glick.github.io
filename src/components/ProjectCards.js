@@ -2,7 +2,6 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import ImageCard from './ImageCard';
 import projects from "../static/projects";
-import useWindowPosition from '../hook/useWindowPosition';
 
 const useStyles = makeStyles((theme) => ({
     root:{
@@ -21,7 +20,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 export default function(){
     const classes = useStyles();
-    //const startAnim = useWindowPosition(projects);
     //map each element in the projects.js file to an ImageCard
     return(
         <div className={classes.root} id="projectCards">

@@ -43,8 +43,9 @@ export default function ImageCard({ project, startAnim }) {
     shadow:1,
   })
   
+  //control display effect
   const { ref, inView, entry } = useInView({
-      threshold: 0.9,
+      threshold: 0.7,     //percent of reference div that needs to be visible to show card
       triggerOnce: true,
       
   })
@@ -52,7 +53,7 @@ export default function ImageCard({ project, startAnim }) {
   return (
     <div ref={ref} className={classes.wrapper}>
         <Collapse in={inView} 
-        {...(startAnim ? { timeout: project.time } : {})} >
+        {...(inView ? { timeout: project.time } : {})} >
             <Card className={classes.root} classes={{root: state.raised ? classes.cardHovered : ""}}
             onMouseOver={()=>setState({ raised: true, shadow:3})} 
             onMouseOut={()=>setState({ raised:false, shadow:1 })} 
