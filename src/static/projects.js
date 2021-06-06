@@ -15,7 +15,7 @@
 const projects=[
     {
         title:"test project 1",
-        desc:"this is the first index in my projects list blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah ",
+        desc:"this is the first project",
         imageUrl: process.env.PUBLIC_URL + "/img/test.jpg",
         time: 800,
         link: "/test1",
@@ -29,21 +29,21 @@ const projects=[
     },
     {
         title:"test project 3",
-        desc:"second index blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah ",
+        desc:"second index blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah ",
         imageUrl: process.env.PUBLIC_URL + "/img/test.jpg",
         time: 800,
         link: "/test3",
     },
     {
         title:"test project 4",
-        desc:"second index blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah ",
+        desc:"second index blah blah blah blah blah blah blah blah blah ah blah blah blah blah blah blah blah blah blah blah blah blah ",
         imageUrl: process.env.PUBLIC_URL + "/img/oldtest.jpg",
         time: 800,
         link: "/test4",
     },
     {
         title:"test project 5",
-        desc:"second index blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah ",
+        desc:"second index blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah ",
         imageUrl: process.env.PUBLIC_URL + "/img/oldtest.jpg",
         time: 800,
         link: "/test5",
@@ -57,7 +57,7 @@ const projects=[
     },
     {
         title:"test project 7",
-        desc:"second index blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah ",
+        desc:"second index blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blahblah blah blah blah blah blah blah blah blah blah blah blahblah blah blah blah blah blah blah blah blah blah blah blahblah blah blah blah blah blah blah blah blah blah blah blahblah blah blah blah blah blah blah blah blah blah blah blahblah blah blah blah blah blah blah blah blah blah blah blahblah blah blah blah blah blah blah blah blah blah blah blahblah blah blah blah blah blah blah blah  blah blah blah blah blah blah blah blah blah blah blah blah blah blah ",
         imageUrl: process.env.PUBLIC_URL + "/img/oldtest.jpg",
         time: 800,
         link: "/test7",

@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: "center",
         alignItems: "center",
         flexWrap: "wrap",
-        [theme.breakpoints.down("md")]:{    //switch to column flex direction when medium screen width (960px) or below detected
+        [theme.breakpoints.down("sm")]:{    //switch to column flex direction when medium screen width (960px) or below detected
             flexDirection:"column",
         }
     }

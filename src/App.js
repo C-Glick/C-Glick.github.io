@@ -9,7 +9,7 @@ import AboutPage from "./pages/AboutPage"
 
 const useStyles = makeStyles((theme) => ({
   root:{
-    background: 'rgba(40,40,40,1)',
+    background: 'rgb(40,40,40)',   //site wide background color
   }
 }));
 

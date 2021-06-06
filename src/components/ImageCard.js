@@ -7,9 +7,13 @@ import Typography from '@material-ui/core/Typography';
 import { Collapse } from '@material-ui/core';
 import { useInView } from 'react-intersection-observer'
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 645,
+    minWidth: 400,
+    [theme.breakpoints.down("xs")]:{    //switch font size when medium screen width (960px) detected
+      minWidth: 0,
+    },
     background:"rgba(0,0,0,0.5)",
     margin: "20px",
     transition: "transform 0.15s ease-in-out"     //for zoom on hover
@@ -39,7 +43,7 @@ const useStyles = makeStyles({
   wrapper:{
       minHeight:500     //ensures wrapper is appropriate size for beginning display animation
   }
-});
+}));
 
 export default function ImageCard({ project }) {
   const classes = useStyles();
@@ -49,7 +53,7 @@ export default function ImageCard({ project }) {
   });
   
   //control display effect
-  const { ref, inView, entry } = useInView({
+  const { ref, inView } = useInView({
       threshold: 0.65,     //percent of reference div that needs to be visible to show card
       triggerOnce: true,  
   });
