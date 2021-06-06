@@ -23,11 +23,24 @@ const useStyles = makeStyles((theme) => ({
     height: 440,
   },
 
+  titleWrapper:{
+    display: "flex",
+    justifyContent: "space-between"
+    
+  },
+
   title: {
     fontFamily: 'Roboto',
     fontWeight: "bold",
     fontSize: "2rem",
     color: "#fff",
+  },
+
+  subTitle: {
+    fontFamily: 'Roboto',
+    fontWeight: "thin",
+    fontSize: "1rem",
+    color: "#aaa",
   },
 
   desc:{
@@ -73,13 +86,22 @@ export default function ImageCard({ project }) {
                 title={project.title}
                 />
                 <CardContent>
-                  <Typography 
-                      gutterBottom 
-                      variant="h5" 
-                      component="h2" 
-                      className={classes.title}>
-                      {project.title}
-                  </Typography>
+                  <div className={classes.titleWrapper}>
+                    <Typography 
+                        gutterBottom 
+                        variant="h5" 
+                        component="h2" 
+                        className={classes.title}>
+                        {project.title}
+                    </Typography>
+                    <Typography 
+                        gutterBottom 
+                        variant="h5" 
+                        component="h2" 
+                        className={classes.subTitle}>
+                        {project.date}
+                    </Typography>
+                  </div>
                   <Typography 
                       variant="body2" 
                       color="textSecondary" 

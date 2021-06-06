@@ -1,21 +1,21 @@
 import React from "react";
+import { makeStyles } from "@material-ui/core/styles"
+import {Link} from "react-router-dom"
+
+import { AppBar, IconButton, Toolbar } from "@material-ui/core";
+import SortIcon from '@material-ui/icons/Sort';
 
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import { makeStyles } from "@material-ui/core/styles"
-import { AppBar, IconButton, Toolbar } from "@material-ui/core";
-import SortIcon from '@material-ui/icons/Sort';
+
 import PersonIcon from '@material-ui/icons/Person';
 import DescriptionIcon from '@material-ui/icons/Description';
 import HomeIcon from '@material-ui/icons/Home';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
-import {Link} from "react-router-dom"
-
-
 
 const useStyles = makeStyles((theme) => ({
 
@@ -69,7 +69,7 @@ const useStyles = makeStyles((theme) => ({
             justifyContent: "center",
         },
         
-        },
+    },
 
     menuItemText:{
         fontSize: 20,
