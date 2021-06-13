@@ -25,6 +25,10 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
     padding: "50px",
+    [theme.breakpoints.down("xs")]:{
+      padding: "0px",
+      paddingTop: "20px",
+    }
   },
 
   spacer:{
@@ -32,7 +36,6 @@ const useStyles = makeStyles((theme) => ({
   },
 
   paper: {
-    maxWidth:"90vw",
     padding: theme.spacing(5),
     textAlign: 'center',
     backgroundColor: 'rgb(60,60,60)',
@@ -74,6 +77,9 @@ export default function CenteredGrid() {
   useEffect(()=>{
     setStartAnim(true);
   },[]);
+
+  {/*TODO: fix bug, scroll down on home page, then move to about me page, 
+      window starts in the middle of the page, need to set scroll position?*/}
 
   return (
     <div className={classes.root}>
