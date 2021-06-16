@@ -12,13 +12,17 @@ import {Link} from "react-router-dom"
 
 import DescriptionIcon from '@material-ui/icons/Description';
 
-import {defaultBackground} from "../static/config";
+import * as Config from "../static/config";
 
 
 const useStyles = makeStyles((theme) => ({
   root: {
     minHeight:"100vh",
-    backgroundImage:  defaultBackground,
+    backgroundImage:  Config.background,
+    backgroundSize: "cover",
+    backgroundRepeat:"no-repeat",
+    backgroundPosition:"center",
+    backgroundAttachment:"fixed",
   },
 
   container:{
@@ -38,9 +42,14 @@ const useStyles = makeStyles((theme) => ({
   },
 
   paper: {
-    padding: theme.spacing(5),
+    padding: "50px",
+    paddingLeft: "80px",
+    paddingRight: "80px",
+    [theme.breakpoints.down("xs")]:{
+      padding: "40px",
+    },
     textAlign: 'center',
-    backgroundColor: 'rgb(60,60,60)',
+    backgroundColor: Config.darkGrey,
     color: 'white',
     fontSize: '18px'
   },
@@ -104,6 +113,9 @@ export default function CenteredGrid() {
                         </ListItem>
                     </Link>
                   </Grid>
+
+        
+
 
                   <Grid item xs={12}>
                     <img className={classes.image} src={process.env.PUBLIC_URL + "/img/profile_picture.png"} alt={"Colton Glick"}></img>

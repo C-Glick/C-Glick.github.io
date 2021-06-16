@@ -3,14 +3,14 @@ import { makeStyles } from "@material-ui/core/styles"
 import Header from "../components/Header";
 import ProjectCards from "../components/ProjectCards";
 
-import {defaultBackground} from "../static/config";
+import * as Config from "../static/config";
 
 const useStyles = makeStyles((theme) => ({
   //styling for root div, including size and background image
   root: {
     minHeight:"100vh",
 
-    backgroundImage:  defaultBackground,
+    backgroundImage:  Config.background,
     backgroundSize: "cover",
     backgroundRepeat:"no-repeat",
     backgroundPosition:"center",

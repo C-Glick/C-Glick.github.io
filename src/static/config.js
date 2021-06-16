@@ -4,4 +4,5 @@
     // #740079, #b81f6a, #df5b5c, #f1985b, #f4d279 dark purple pink and yellow
     //#38247E, #2E7ACD, #8ED4F2 dark blue
     // #38247e, #37338e, #34429e, #3051ad, #2a5fbc, #1573cb, #0087d7, #009ae2, #00b5e7, #00ccdd, #3ee1cc, #8ef2b9 dark blue to teal
-export const defaultBackground = "linear-gradient(to top right, #38247e, #37338e, #34429e, #3051ad, #2a5fbc, #1573cb, #0087d7, #009ae2, #00b5e7, #00ccdd, #3ee1cc, #8ef2b9)";
+export const background = "linear-gradient(to top right, #38247e, #37338e, #34429e, #3051ad, #2a5fbc, #1573cb, #0087d7, #009ae2, #00b5e7, #00ccdd, #3ee1cc, #8ef2b9)";
+export const darkGrey = "rgb(40,40,40)"
