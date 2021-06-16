@@ -9,9 +9,11 @@ import LandingPage from "./pages/LandingPage"
 import AboutPage from "./pages/AboutPage"
 import NotFoundPage from "./pages/NotFoundPage"
 
+import * as Config from "./static/config.js"
+
 const useStyles = makeStyles((theme) => ({
   root:{
-    background: 'rgb(40,40,40)',   //site wide background color
+    background: Config.darkGrey,   //site wide background color
   }
 }));
 
@@ -22,7 +24,7 @@ export default function App() {
     <div className={classes.root}>
       <CssBaseline />
       <NavBar />
-      <Switch>  {/* renders only on of the following components */}
+      <Switch>  {/* renders only one of the following components */}
         <Route exact path="/"><LandingPage /></Route>
         <Route path="/about"><AboutPage /></Route>
         <Route path="/:id"><NotFoundPage /></Route>
