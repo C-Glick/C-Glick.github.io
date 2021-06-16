@@ -7,6 +7,7 @@ import NavBar from "./components/NavBar"
 import {Route, Switch} from "react-router-dom"
 import LandingPage from "./pages/LandingPage"
 import AboutPage from "./pages/AboutPage"
+import NotFoundPage from "./pages/NotFoundPage"
 
 const useStyles = makeStyles((theme) => ({
   root:{
@@ -24,9 +25,7 @@ export default function App() {
       <Switch>  {/* renders only on of the following components */}
         <Route exact path="/"><LandingPage /></Route>
         <Route path="/about"><AboutPage /></Route>
-        <Route path="/:id">
-          <div style={{position: "absolute", top: "50%", left: "50%"}}><h1>404</h1></div>   {/* TODO 404 page */}
-        </Route>
+        <Route path="/:id"><NotFoundPage /></Route>
       </Switch>
     </div>
   );

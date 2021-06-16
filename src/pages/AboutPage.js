@@ -80,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function CenteredGrid() {
+export default function AboutPage() {
   const classes = useStyles();
 
   //animation for paper
