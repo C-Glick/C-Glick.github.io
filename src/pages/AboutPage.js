@@ -12,11 +12,13 @@ import {Link} from "react-router-dom"
 
 import DescriptionIcon from '@material-ui/icons/Description';
 
+import {defaultBackground} from "../static/config";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
     minHeight:"100vh",
-    backgroundImage:  "linear-gradient(to top right, #38247e, #37338e, #34429e, #3051ad, #2a5fbc, #1573cb, #0087d7, #009ae2, #00b5e7, #00ccdd, #3ee1cc, #8ef2b9)",
+    backgroundImage:  defaultBackground,
   },
 
   container:{

@@ -165,7 +165,6 @@ export default function NavBar() {
     <div className={classes.root} id="header">
         <AppBar className={classes.appBar} elevation={0}>
             <Toolbar className={classes.appBarWrapper}>
-                {/*TODO link to home takes up too much of the navbar*/ }
                     <Link to="/" style={{textDecoration: 'none', color: 'inherit'}} className={classes.appBarTitle}>
                         <h1>Colton Glick</h1>
                     </Link>
