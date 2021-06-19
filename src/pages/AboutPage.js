@@ -88,9 +88,6 @@ export default function AboutPage() {
     setStartAnim(true);
   },[]);
 
-  {/*TODO: fix bug, scroll down on home page, then move to about me page, 
-      window starts in the middle of the page, need to set scroll position?*/}
-
   return (
     <div className={classes.root}>
       <div className={classes.spacer}></div>
