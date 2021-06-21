@@ -16,6 +16,8 @@ const useStyles = makeStyles((theme) => ({
         }
     }
 }));
+
+//TODO different image resolutions for different screen sizes for more efficient load times.
 export default function ProjectCards(){
     const classes = useStyles();
     return(

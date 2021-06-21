@@ -28,7 +28,7 @@ const projects=[
         title:"Responsive LED Display",
         desc:"second index blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah ",
         date:"2020",
-        imageUrl: process.env.PUBLIC_URL + "/img/oldtest.jpg",
+        imageUrl: process.env.PUBLIC_URL + "/img/responsive_LED_512.gif",
         time: 800,
         link: "/test2",
     },

@@ -7,6 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Slide from '@material-ui/core/Slide';
+import Button from '@material-ui/core/Button';
 
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -58,6 +59,14 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'left',
   },
 
+  menuItemIcon:{
+    color: "white",
+    fontSize: 30,
+    [theme.breakpoints.down("xs")]:{
+        fontSize: 35,
+    },
+  },
+
   image:{
     float: "right",
     padding: "10px",
@@ -68,8 +77,12 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("xs")]:{
       width: "15rem",
       float: "none",
-    }
-    
+    } 
+  },
+
+  button:{
+    color: "white",
+    backgroundColor: Config.mediumGrey,
   },
 
   para:{
@@ -97,16 +110,32 @@ export default function AboutPage() {
         direction="up">
           <Paper className={classes.paper}>
               <Grid container spacing={3} direction="row">
-                  <Grid item xs={12} sm={10}>
+                  <Grid item xs={12} sm={8}>
                       <div className={classes.title}>Hi 👋, Welcome to my Website!</div>
+                  </Grid>
+
+                  {/*TODO fix button overlap on narrow screens */}
+                  <Grid item xs={12} sm={2}>
+                    <Link to="/resume" style={{textDecoration: 'none', color: 'inherit'}}>
+                        <Button
+                          variant="outlined"
+                          className={classes.button}
+                          startIcon={<DescriptionIcon />}
+                        >
+                          Resume
+                        </Button>
+                    </Link>
                   </Grid>
 
                   <Grid item xs={12} sm={2}>
                     <Link to="/resume" style={{textDecoration: 'none', color: 'inherit'}}>
-                        <ListItem button>
-                            <ListItemIcon> <DescriptionIcon className={classes.menuItemIcon}/> </ListItemIcon>
-                            <ListItemText classes={{primary:classes.menuItemText}} primary="Resume" />
-                        </ListItem>
+                        <Button
+                          variant="outlined"
+                          className={classes.button}
+                          startIcon={<DescriptionIcon />}
+                        >
+                          Resume
+                        </Button>
                     </Link>
                   </Grid>
 
