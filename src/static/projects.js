@@ -15,7 +15,17 @@
 
 const projects=[
     {
-        title:"OpenUAS, Boeing Fellowship",
+        title:"Boeing Internship",
+        desc:"Assisted in developing a VR application to train new pilots. " + 
+        "Collaborated between the visual systems team and TODO Tim's team to integrate a cutting edge VR application " + 
+        "with an existing simulation framework.",
+        date:"2021",
+        imageUrl: process.env.PUBLIC_URL + "/img/oldtest.jpg",
+        time: 800,
+        link: "/test6",
+    },
+    {
+        title:"Boeing Fellowship, OpenUAS",
         desc:"Autonomous landing, flight simulation, and improved power usage. " + 
         "I worked on an unmanned aircaft system (UAS) with the OpenUAS team at ISU during my Boeing fellowship. " + 
         "Culminating into our research paper being published by the IEEE at ICUAS 2021.",
@@ -26,7 +36,9 @@ const projects=[
     },
     {
         title:"Responsive LED Display",
-        desc:"second index blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah ",
+        desc:"An audio responsive LED display, powered by a Raspberry Pi 3. " +
+        "The server, the Pi, directly controls the lights, and a secondary device, the client, sends commands via a TCP socket." +
+        "The client listens to playing audio to send commands to the lights, creating a spectrograph style display. ",
         date:"2020",
         imageUrl: process.env.PUBLIC_URL + "/img/responsive_LED_512.gif",
         time: 800,
@@ -34,35 +46,31 @@ const projects=[
     },
     {
         title:"FIRST Robotics, Mentor",
-        desc:"second index blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah ",
+        desc:"I work closely with my high school robotics team to mentor in Java programming. " + 
+        "Helping new students learn the language, and provide advice or assistance when needed.",
         date:"2018 - current",
-        imageUrl: process.env.PUBLIC_URL + "/img/test.jpg",
+        imageUrl: process.env.PUBLIC_URL + "/img/FRC/mentor/FRC2019_1.jpg",
         time: 800,
         link: "/test3",
     },
     {
         title:"FIRST Robotics, Captain",
-        desc:"second index blah blah blah blah blah blah blah blah blah ah blah blah blah blah blah blah blah blah blah blah blah blah ",
+        desc:"Was elected, organized, and lead the team for the 2018 season. " + 
+        "Represented our team to officials during the competition, and was the driver coach.",
         date:"2017 - 2018",
-        imageUrl: process.env.PUBLIC_URL + "/img/oldtest.jpg",
+        imageUrl: process.env.PUBLIC_URL + "/img/FRC/captain/FRC2018_4.jpg",
         time: 800,
         link: "/test4",
     },
     {
         title:"FIRST Robotics, Programmer",
-        desc:"second index blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah ",
+        desc:"My first year in FRC, I learned Java programming and quickly grasped the engineering concepts " + 
+        "needed to build a competitive robot. Worked together with senior members of the team to program and design " + 
+        "a working system.",
         date:"2016 - 2017",
-        imageUrl: process.env.PUBLIC_URL + "/img/oldtest.jpg",
+        imageUrl: process.env.PUBLIC_URL + "/img/FRC/programmer/FRC2017_1.jpg",
         time: 800,
         link: "/test5",
-    },
-    {
-        title:"test project 6",
-        desc:"second index blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah ",
-        date:"2015 - 2016",
-        imageUrl: process.env.PUBLIC_URL + "/img/oldtest.jpg",
-        time: 800,
-        link: "/test6",
     },
     {
         title:"test project 7",
