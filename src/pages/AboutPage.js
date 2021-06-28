@@ -9,10 +9,6 @@ import Grid from '@material-ui/core/Grid';
 import Slide from '@material-ui/core/Slide';
 import Button from '@material-ui/core/Button';
 
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-
 import DescriptionIcon from '@material-ui/icons/Description';
 
 const useStyles = makeStyles((theme) => ({
@@ -83,11 +79,21 @@ const useStyles = makeStyles((theme) => ({
   button:{
     color: "white",
     backgroundColor: Config.mediumGrey,
+    margin: "10px",
+
+  },
+
+  topButton:{
+    float: "right",
+   
+    [theme.breakpoints.down("sm")]:{
+      float: "none",
+    }
   },
 
   para:{
     textAlign: "left",
-    maxWidth: "50rem",
+    maxWidth: "60rem",
   }
 
 }));
@@ -110,36 +116,42 @@ export default function AboutPage() {
         direction="up">
           <Paper className={classes.paper}>
               <Grid container spacing={3} direction="row">
-                  <Grid item xs={12} sm={8}>
+
+                  <Grid item md={12} lg={6}>
                       <div className={classes.title}>Hi 👋, Welcome to my Website!</div>
                   </Grid>
 
-                  {/*TODO fix button overlap on narrow screens */}
-                  <Grid item xs={12} sm={2}>
-                    <Link to="/resume" style={{textDecoration: 'none', color: 'inherit'}}>
+                  <Grid item md={12} lg={6}>
+                    <Link to="/resume" className={classes.topButton} style={{textDecoration: 'none', color: 'inherit'}}>
                         <Button
                           variant="outlined"
                           className={classes.button}
                           startIcon={<DescriptionIcon />}
                         >
-                          Resume
+                          View on Github
                         </Button>
                     </Link>
-                  </Grid>
 
-                  <Grid item xs={12} sm={2}>
-                    <Link to="/resume" style={{textDecoration: 'none', color: 'inherit'}}>
-                        <Button
-                          variant="outlined"
-                          className={classes.button}
-                          startIcon={<DescriptionIcon />}
-                        >
-                          Resume
-                        </Button>
+                    <Link to="/resume" className={classes.topButton} style={{textDecoration: 'none', color: 'inherit'}}>
+                      <Button
+                        variant="outlined"
+                        className={classes.button}
+                        startIcon={<DescriptionIcon />}
+                      >
+                        Resume
+                      </Button>
+                    </Link>
+
+                    <Link to="/resume" className={classes.topButton} style={{textDecoration: 'none', color: 'inherit'}}>
+                      <Button
+                        variant="outlined"
+                        className={classes.button}
+                        startIcon={<DescriptionIcon />}
+                      >
+                        Resume
+                      </Button>
                     </Link>
                   </Grid>
-
-        
 
 
                   <Grid item xs={12}>
@@ -157,14 +169,20 @@ export default function AboutPage() {
 
                       {/* TODO add more detail */}
                       <p className={classes.para}>
-                        Some of my experience includes:<br></br> FRC programmer & driver, FRC Captain, FRC Mentor,
-                        John Deere, Boeing Fellowship, and Boeing Intern.
+                        Some of my experience includes:<br></br> Boeing Internship, Boeing fellowship, John Deere part time,
+                        FRC mentor, FRC captain, and FRC programmer & driver. 
                       </p>
 
                       <p className={classes.para}>
                         I began my journey into programming during my sophomore year of high school. I heard about this
                         robotics club that started up and was interested in joining. My first year on our FIRST Robotics
                         Competition (FRC) team, #6164 The Moonshot Slaybots, I learned the basics of Java programming.
+                      </p>
+
+                      <p className={classes.para}>
+                        Some of my hobbies apart from programming include reading, biking, and video games.
+                        I am currently reading The Stormlight Archive by Brandon Sanderson. Recently I have also
+                        been getting into historical European martial arts (HEMA) and have been enjoying it thoroughly!
                       </p>
                   </Grid>
               </Grid>
