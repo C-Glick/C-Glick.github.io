@@ -87,15 +87,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   topButton:{
-    float: "right",
-   
-    [theme.breakpoints.down("md")]:{
-      float: "left",
-    },
-
-    [theme.breakpoints.down("sm")]:{
-      float: "none",
-    },
+    float: "left",
 
   },
 
@@ -125,40 +117,21 @@ export default function AboutPage() {
           <Paper className={classes.paper}>
               <Grid container spacing={3} direction="row">
 
-                  <Grid item md={12} lg={6}>
-                      <div className={classes.title}>Hi 👋, Welcome to my Website!</div>
+                  <Grid item xs={12}>
+                      <div className={classes.title}>Boeing Fellowship, OpenUAS</div>
                   </Grid>
 
-                  <Grid item md={12} lg={6}>
-                    <a href={"https://github.com/c-glick"} className={classes.topButton} style={{textDecoration: 'none', color: 'inherit'}}>
+                  <Grid item xs={12}>
+                    <a href={"https://github.com/LTL-AERO/PX4-Autopilot/tree/stable"} className={classes.topButton} style={{textDecoration: 'none', color: 'inherit'}}>
                         <Button
                           variant="outlined"
                           className={classes.button}
                           startIcon={<GitHubIcon />}
                         >
-                          Github
+                          View on Github
                         </Button>
                     </a>
 
-                    <a href="https://www.linkedin.com/in/colton-glick/" className={classes.topButton} style={{textDecoration: 'none', color: 'inherit'}}>
-                      <Button
-                        variant="outlined"
-                        className={classes.button}
-                        startIcon={<LinkedInIcon />}
-                      >
-                        LinkedIn
-                      </Button>
-                    </a>
-
-                    <Link to="/resume" className={classes.topButton} style={{textDecoration: 'none', color: 'inherit'}}>
-                      <Button
-                        variant="outlined"
-                        className={classes.button}
-                        startIcon={<DescriptionIcon />}
-                      >
-                        Resume
-                      </Button>
-                    </Link>
                   </Grid>
 
 

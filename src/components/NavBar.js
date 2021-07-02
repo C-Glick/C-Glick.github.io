@@ -67,6 +67,7 @@ const useStyles = makeStyles((theme) => ({
             width: "80vw",
             display: "flex",
             justifyContent: "center",
+            marginTop: "20px",
         },
         
     },
@@ -90,9 +91,7 @@ const useStyles = makeStyles((theme) => ({
         background: 'rgb(40,40,40)',
         //text color
         color: "white",
-        [theme.breakpoints.down("xs")]:{
-            justifyContent: "center",
-        },
+        
     }
 
 }));

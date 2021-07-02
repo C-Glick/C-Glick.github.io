@@ -19,6 +19,9 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
 
+  container:{
+    maxWidth:"80%"
+  },
 
   spacer:{
     minHeight: "80px",
@@ -27,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 
   title:{
     color: 'white',
-    fontSize: '4.5em',
+    fontSize: '4.3em',
     textAlign: 'center',
     fontWeight: "bold",
   },
@@ -46,10 +49,12 @@ export default function NotFoundPage() {
 
   return (
     <div className={classes.root}>
-      <div className={classes.spacer}></div>
-      <div className={classes.title}>404 Page Not Found</div>
-      <div className={classes.subTitle}>Not all who wander are lost.</div>
-      <div className={classes.subTitle}>But you are...</div>
+      <div className={classes.container}>
+        <div className={classes.spacer}></div>
+        <div className={classes.title}>404 Page Not Found</div>
+        <div className={classes.subTitle}>Not all who wander are lost.</div>
+        <div className={classes.subTitle}>But you are...</div>
+      </div>
     </div>
   );
 }

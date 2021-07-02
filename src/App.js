@@ -7,6 +7,7 @@ import NavBar from "./components/NavBar"
 import {Route, Switch} from "react-router-dom"
 import LandingPage from "./pages/LandingPage"
 import AboutPage from "./pages/AboutPage"
+import OpenUASPage from "./pages/OpenUASPage"
 import NotFoundPage from "./pages/NotFoundPage"
 
 import * as Config from "./static/config.js"
@@ -27,6 +28,7 @@ export default function App() {
       <Switch>  {/* renders only one of the following components */}
         <Route exact path="/"><LandingPage /></Route>
         <Route path="/about"><AboutPage /></Route>
+        <Route path="/OpenUAS"><OpenUASPage /></Route>
         <Route path="/:id"><NotFoundPage /></Route>
       </Switch>
     </div>

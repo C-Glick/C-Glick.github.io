@@ -17,8 +17,8 @@ const projects=[
     {
         title:"Boeing Internship",
         desc:"Assisted in developing a VR application to train new pilots. " + 
-        "Collaborated between the visual systems team and TODO Tim's team to integrate a cutting edge VR application " + 
-        "with an existing simulation framework.",
+        "Collaborated between the visual systems team and TODO Tim's team to integrate cutting edge VR " + 
+        "technology with an existing simulation framework.",
         date:"2021",
         imageUrl: process.env.PUBLIC_URL + "/img/oldtest.jpg",
         time: 800,
@@ -32,7 +32,7 @@ const projects=[
         date:"2020 - 2021",
         imageUrl: process.env.PUBLIC_URL + "/img/OpenUAS_2.jpg",
         time: 800,
-        link: "/test1",
+        link: "/OpenUAS",
     },
     {
         title:"Responsive LED Display",
@@ -41,6 +41,16 @@ const projects=[
         "The client listens to playing audio to send commands to the lights, creating a spectrograph style display. ",
         date:"2020",
         imageUrl: process.env.PUBLIC_URL + "/img/responsive_LED_512.gif",
+        time: 800,
+        link: "/test2",
+    },
+    {
+        title:"John Deere Web Development",
+        desc:"An audio responsive LED display, powered by a Raspberry Pi 3. " +
+        "The server, the Pi, directly controls the lights, and a secondary device, the client, sends commands via a TCP socket." +
+        "The client listens to playing audio to send commands to the lights, creating a spectrograph style display. ",
+        date:"2020",
+        imageUrl: process.env.PUBLIC_URL + "/img/oldtest.jpg",
         time: 800,
         link: "/test2",
     },
@@ -71,14 +81,6 @@ const projects=[
         imageUrl: process.env.PUBLIC_URL + "/img/FRC/programmer/FRC2017_1.jpg",
         time: 800,
         link: "/test5",
-    },
-    {
-        title:"test project 7",
-        desc:"second index blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blahblah blah blah blah blah blah blah blah blah blah blah blahblah blah blah blah blah blah blah blah blah blah blah blahblah blah blah blah blah blah blah blah blah blah blah blahblah blah blah blah blah blah blah blah blah blah blah blahblah blah blah blah blah blah blah blah blah blah blah blahblah blah blah blah blah blah blah blah blah blah blah blahblah blah blah blah blah blah blah blah  blah blah blah blah blah blah blah blah blah blah blah blah blah blah ",
-        date:"2018 - 2019",
-        imageUrl: process.env.PUBLIC_URL + "/img/oldtest.jpg",
-        time: 800,
-        link: "/test7",
     },
 ]
 
