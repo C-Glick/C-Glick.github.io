@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 
-import {Link} from "react-router-dom"
 import * as Config from "../static/config";
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -9,9 +8,7 @@ import Grid from '@material-ui/core/Grid';
 import Slide from '@material-ui/core/Slide';
 import Button from '@material-ui/core/Button';
 
-import DescriptionIcon from '@material-ui/icons/Description';
 import GitHubIcon from '@material-ui/icons/GitHub';
-import LinkedInIcon from '@material-ui/icons/LinkedIn'
 
 
 const useStyles = makeStyles((theme) => ({

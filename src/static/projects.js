@@ -59,7 +59,7 @@ const projects=[
         desc:"I work closely with my high school robotics team to mentor in Java programming. " + 
         "Helping new students learn the language, and provide advice or assistance when needed.",
         date:"2018 - current",
-        imageUrl: process.env.PUBLIC_URL + "/img/FRC/mentor/FRC2019_1.jpg",
+        imageUrl: process.env.PUBLIC_URL + "/img/FRC/mentor/FRC2019_1_compressed.jpg",
         time: 800,
         link: "/test3",
     },
@@ -68,7 +68,7 @@ const projects=[
         desc:"Was elected, organized, and lead the team for the 2018 season. " + 
         "Represented our team to officials during the competition, and was the driver coach.",
         date:"2017 - 2018",
-        imageUrl: process.env.PUBLIC_URL + "/img/FRC/captain/FRC2018_4.jpg",
+        imageUrl: process.env.PUBLIC_URL + "/img/FRC/captain/FRC2018_4_compressed.jpg",
         time: 800,
         link: "/test4",
     },
@@ -78,7 +78,7 @@ const projects=[
         "needed to build a competitive robot. Worked together with senior members of the team to program and design " + 
         "a working system.",
         date:"2016 - 2017",
-        imageUrl: process.env.PUBLIC_URL + "/img/FRC/programmer/FRC2017_1.jpg",
+        imageUrl: process.env.PUBLIC_URL + "/img/FRC/programmer/FRC2017_1_compressed.jpg",
         time: 800,
         link: "/test5",
     },
