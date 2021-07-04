@@ -9,6 +9,9 @@ import Slide from '@material-ui/core/Slide';
 import Button from '@material-ui/core/Button';
 
 import GitHubIcon from '@material-ui/icons/GitHub';
+import LaunchIcon from '@material-ui/icons/Launch';
+
+import YouTube from 'react-youtube';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -66,12 +69,12 @@ const useStyles = makeStyles((theme) => ({
   image:{
     float: "right",
     padding: "10px",
-    width: "30rem",
+    width: "40rem",
     [theme.breakpoints.down("md")]:{
-      width: "20rem",
+      width: "33rem",
     },
     [theme.breakpoints.down("xs")]:{
-      width: "15rem",
+      width: "20rem",
       float: "none",
     } 
   },
@@ -91,6 +94,28 @@ const useStyles = makeStyles((theme) => ({
   para:{
     textAlign: "left",
     maxWidth: "60rem",
+  },
+  
+  video:{
+    //16:9 aspect ratio
+    float: "left",
+    margin: "20px",
+    width: "800px",
+    height: "450px",
+
+    [theme.breakpoints.down("md")]:{
+      width: "512px",
+      height: "288px",
+    },
+
+    //TODO: percentage size at low screen resolutions
+    [theme.breakpoints.down("xs")]:{
+      width: "304px",
+      height: "171px",
+      float: "none",
+    } 
+
+
   }
 
 }));
@@ -105,6 +130,8 @@ export default function AboutPage() {
   },[]);
 
   return (
+
+
     <div className={classes.root}>
       <div className={classes.spacer}></div>
 
@@ -129,64 +156,62 @@ export default function AboutPage() {
                         </Button>
                     </a>
 
+                    <a href={"http://temporallogic.org/research/ICUAS21/"} className={classes.topButton} style={{textDecoration: 'none', color: 'inherit'}}>
+                        <Button
+                          variant="outlined"
+                          className={classes.button}
+                          startIcon={<LaunchIcon />}
+                        >
+                          Website
+                        </Button>
+                    </a>
                   </Grid>
 
-
                   <Grid item xs={12}>
-                    <img className={classes.image} src={process.env.PUBLIC_URL + "/img/profile_picture.png"} alt={"Colton Glick"}></img>
+                    <img className={classes.image} src={process.env.PUBLIC_URL + "/img/OpenUAS/UASImage1_compressed.jpg"} alt={"OpenUAS, fuselage and wings assembled"}></img>
+
                     <p className={classes.para}>
-                      My name is Colton Glick, and I am currently an undergraduate student studying software engineering at Iowa
-                      State University. 
+                      The OpenUAS is an in development medium sized unmanned ariel system (UAS) that is
+                      easily accessible and affordable. We intend it to be used by other research
+                      groups to support in flight development, or by high school students
+                      who wish to explore the topic of aerospace and software engineering.
                     </p>
 
                     <p className={classes.para}>
-                      I enjoy programming and coming up with clever solutions to challenging problems.
-                      I have worked on numerous projects that can be viewed on the home page, 
-                      ranging from Boeing flight simulators to large scale competitive robotics to this very website.
+                      Requirements:
+                      <ul>
+                        <li>Made from easily accessible or easily manufacturable components</li>
+                        <li>The design is entirely open source and freely available to all</li>
+                        <li>Small and light enough to be launched via a catapult</li>
+                        <li>Well documented technical decisions for future users</li>
+                      </ul>
+                    </p>
+                   
+                    <p className={classes.para}>
+                    The reason behind this project is the lack of easily accessible fixed wing autonomous craft.
+                    Unlike quadcopters, fixed wing aircraft are not as readily available online.
+                    The ones that are available are either very expensive, or inflexible and/or too small.
+                    So the OpenUAS team aims to fill this gap in available test beds. Giving other groups 
+                    more options to test their equipment or giving younger students an affordable
+                    option to explore this area of aerospace and software engineering.
                     </p>
 
-                    {/* TODO add more detail */}
+
+                    <YouTube className={classes.video} videoId="xZF81fSSzbI"/>
+                    
+                    
                     <p className={classes.para}>
-                      Some of my experience includes:<br></br> Boeing Internship, Boeing fellowship, John Deere part-time student,
-                      FRC mentor, FRC captain, and FRC programmer & driver. 
+                    The reason behind this project is the lack of easily accessible fixed wing autonomous craft.
+                    Unlike quadcopters, fixed wing aircraft are not as readily available online.
+                    The ones that are available are either very expensive, or inflexible and/or too small.
+                    So the OpenUAS team aims to fill this gap in available test beds. Giving other groups 
+                    more options to test their equipment or giving younger students an affordable
+                    option to explore this area of aerospace and software engineering.
                     </p>
 
-                    <p className={classes.para}>
-                      Some of my hobbies, apart from programming, include reading, biking, and video games.
-                      I am currently reading The Stormlight Archive by Brandon Sanderson.My favorite video games
-                      include Half-Life Alyx, Kerbal Space Program, and The Legend of Zelda. I have recently
-                      been getting into historical European martial arts (HEMA) and have been enjoying it thoroughly!
-                    </p>
+                    <YouTube className={classes.video} videoId="w_EEVMw7IcQ"/>
+                    
 
-                    <p className={classes.para}>
-                      I began my journey into programming during my sophomore year of high school. I heard about this
-                      robotics club that started up and was interested in joining. In my first year on our FIRST Robotics
-                      Competition (FRC) team, #6164, The Moonshot Slaybots, I learned the basics of Java programming.
-                    </p>
-
-                    <p className={classes.para}>
-                    From there, I kept exploring computers until I was admitted to Iowa State University (ISU) for software
-                      engineering.
-                    </p>
-
-                    {/*TODO less about JD */}
-                    <p className={classes.para}>
-                      I began at John Deere as a part-time student around the same time as ISU. There 
-                      I worked with the parameters department who manages procured components for the product. I assisted in 
-                      developing and maintaining internal web tools used by the parameters department and other similar
-                      sections of John Deere. I also helped the automation initiative by creating several Excel
-                      VBA scripts. This additional automation reduced the processing time of these repetitive tasks by 95%.
-                    </p>
-
-                    <p className={classes.para}>
-                      While at John Deere, I learned ColdFusion, HMTL, VBA, and some JavaScript. I also learned how to 
-                      work within a small team of technical individuals in a corporate office environment. I would continue
-                      to work for John deere for one year and four months.
-                    </p>
-
-                    <p className={classes.para}>
-                      I transitioned from John Deere to my Boeing Fellowship with Dr. Rozier and the OpenUAS team at ISU.
-                    </p>
                       
                   </Grid>
               </Grid>

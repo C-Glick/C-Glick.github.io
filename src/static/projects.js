@@ -30,7 +30,7 @@ const projects=[
         "I worked on an unmanned aircaft system (UAS) with the OpenUAS team at ISU during my Boeing fellowship. " + 
         "Culminating into our research paper being published by the IEEE at ICUAS 2021.",
         date:"2020 - 2021",
-        imageUrl: process.env.PUBLIC_URL + "/img/OpenUAS_2.jpg",
+        imageUrl: process.env.PUBLIC_URL + "/img/OpenUAS/OpenUAS_2.jpg",
         time: 800,
         link: "/OpenUAS",
     },
