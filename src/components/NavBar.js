@@ -135,21 +135,21 @@ export default function NavBar() {
             </ListItem>
         </Link>
 
-        <Link to="/resume" style={{textDecoration: 'none', color: 'inherit'}}>
+        <a href="/doc/Colton_Glick_Resume.pdf" target="_blank" style={{textDecoration: 'none', color: 'inherit'}}>
             <ListItem button>
                 <ListItemIcon> <DescriptionIcon className={classes.menuItemIcon}/> </ListItemIcon>
                 <ListItemText classes={{primary:classes.menuItemText}} primary="Resume" />
             </ListItem>
-        </Link>
+        </a>
         
-        <a href="https://github.com/c-glick" style={{textDecoration:"none", color:"inherit"}}>
+        <a href="https://github.com/c-glick" target="_blank" style={{textDecoration:"none", color:"inherit"}}>
             <ListItem button>
                 <ListItemIcon> <GitHubIcon className={classes.menuItemIcon}/> </ListItemIcon>
                 <ListItemText classes={{primary:classes.menuItemText}} primary="GitHub" />
             </ListItem>
         </a>
 
-        <a href="https://www.linkedin.com/in/colton-glick/" style={{textDecoration:"none", color:"inherit"}}>
+        <a href="https://www.linkedin.com/in/colton-glick/" target="_blank" style={{textDecoration:"none", color:"inherit"}}>
             <ListItem button>
                 <ListItemIcon> <LinkedInIcon className={classes.menuItemIcon}/> </ListItemIcon>
                 <ListItemText classes={{primary:classes.menuItemText}} primary="LinkedIn" />

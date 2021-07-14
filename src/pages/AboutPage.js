@@ -130,7 +130,7 @@ export default function AboutPage() {
                   </Grid>
 
                   <Grid item md={12} lg={6}>
-                    <a href={"https://github.com/c-glick"} className={classes.topButton} style={{textDecoration: 'none', color: 'inherit'}}>
+                    <a href={"https://github.com/c-glick"} target="_blank" className={classes.topButton} style={{textDecoration: 'none', color: 'inherit'}}>
                         <Button
                           variant="outlined"
                           className={classes.button}
@@ -140,7 +140,7 @@ export default function AboutPage() {
                         </Button>
                     </a>
 
-                    <a href="https://www.linkedin.com/in/colton-glick/" className={classes.topButton} style={{textDecoration: 'none', color: 'inherit'}}>
+                    <a href="https://www.linkedin.com/in/colton-glick/" target="_blank" className={classes.topButton} style={{textDecoration: 'none', color: 'inherit'}}>
                       <Button
                         variant="outlined"
                         className={classes.button}
@@ -150,7 +150,7 @@ export default function AboutPage() {
                       </Button>
                     </a>
 
-                    <Link to="/resume" className={classes.topButton} style={{textDecoration: 'none', color: 'inherit'}}>
+                    <a href="/doc/Colton_Glick_Resume.pdf" target="_blank" className={classes.topButton} style={{textDecoration: 'none', color: 'inherit'}}>
                       <Button
                         variant="outlined"
                         className={classes.button}
@@ -158,7 +158,7 @@ export default function AboutPage() {
                       >
                         Resume
                       </Button>
-                    </Link>
+                    </a>
                   </Grid>
 
 
