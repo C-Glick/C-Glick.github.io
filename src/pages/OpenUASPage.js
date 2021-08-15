@@ -165,6 +165,17 @@ export default function AboutPage() {
                           Website
                         </Button>
                     </a>
+
+                    <a href={"https://lib.dr.iastate.edu/aere_conf/87/"} className={classes.topButton} style={{textDecoration: 'none', color: 'inherit'}}>
+                        <Button
+                          variant="outlined"
+                          className={classes.button}
+                          startIcon={<LaunchIcon />}
+                        >
+                          Publication
+                        </Button>
+                    </a>
+
                   </Grid>
 
                   <Grid item xs={12}>
