@@ -41,6 +41,8 @@ const useStyles = makeStyles((theme) => ({
   },
 
   paper: {
+    maxWidth: "130rem",
+    overflow: "hidden",
     padding: "50px",
     paddingLeft: "80px",
     paddingRight: "80px",
@@ -56,6 +58,10 @@ const useStyles = makeStyles((theme) => ({
   title:{
     fontSize: '2em',
     textAlign: 'left',
+    
+    [theme.breakpoints.down("xs")]:{
+      textAlign: "center",
+    },
   },
 
   menuItemIcon:{
@@ -74,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
       width: "20rem",
     },
     [theme.breakpoints.down("xs")]:{
-      width: "15rem",
+      width: "100%",
       float: "none",
     } 
   },
@@ -87,11 +93,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   topButton:{
-    float: "right",
-   
-    [theme.breakpoints.down("md")]:{
-      float: "left",
-    },
+    float: "left",
 
     [theme.breakpoints.down("sm")]:{
       float: "none",
@@ -100,9 +102,18 @@ const useStyles = makeStyles((theme) => ({
   },
 
   para:{
+    marginLeft: "auto",
+    marginRight: "auto",
     textAlign: "left",
     maxWidth: "60rem",
-  }
+  },
+  
+  header:{
+    marginLeft: "auto",
+    marginRight: "auto",
+    textAlign: "left",
+    maxWidth: "80rem",
+  },
 
 }));
 
@@ -125,12 +136,12 @@ export default function AboutPage() {
           <Paper className={classes.paper}>
               <Grid container spacing={3} direction="row">
 
-                  <Grid item md={12} lg={6}>
+                  <Grid item md={12}>
                       <div className={classes.title}>Hi 👋, Welcome to my Website!</div>
                   </Grid>
 
-                  <Grid item md={12} lg={6}>
-                    <a href={"https://github.com/c-glick"} target="_blank" className={classes.topButton} style={{textDecoration: 'none', color: 'inherit'}}>
+                  <Grid item md={12}>
+                    <a href={"https://github.com/c-glick"} target="_blank" rel="noreferrer" className={classes.topButton} style={{textDecoration: 'none', color: 'inherit'}}>
                         <Button
                           variant="outlined"
                           className={classes.button}
@@ -140,7 +151,7 @@ export default function AboutPage() {
                         </Button>
                     </a>
 
-                    <a href="https://www.linkedin.com/in/colton-glick/" target="_blank" className={classes.topButton} style={{textDecoration: 'none', color: 'inherit'}}>
+                    <a href="https://www.linkedin.com/in/colton-glick/" target="_blank" rel="noreferrer" className={classes.topButton} style={{textDecoration: 'none', color: 'inherit'}}>
                       <Button
                         variant="outlined"
                         className={classes.button}

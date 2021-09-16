@@ -6,6 +6,7 @@ import {Link} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     root:{
+        overflow: "hidden",
         minHeight:"100vh",
         display: "flex",
         justifyContent: "center",

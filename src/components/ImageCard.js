@@ -8,7 +8,7 @@ import { Collapse } from '@material-ui/core';
 import { useInView } from 'react-intersection-observer'
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  root: {    
     maxWidth: 645,
     minWidth: 400,
     [theme.breakpoints.down("xs")]:{    //switch font size when medium screen width (960px) detected

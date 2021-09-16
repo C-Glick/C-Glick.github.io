@@ -16,9 +16,8 @@
 const projects=[
     {
         title:"Boeing Internship",
-        desc:"Assisted in developing a VR application to train new pilots. " + 
-        "Collaborated between the visual systems team and TODO Tim's team to integrate cutting edge VR " + 
-        "technology with an existing simulation framework.",
+        desc:"Contributed to a VR application for pilot and ground crew training. " + 
+        "Utilizing cutting edge VR technology with an existing simulation framework.",
         date:"2021",
         imageUrl: process.env.PUBLIC_URL + "/img/oldtest.jpg",
         time: 800,

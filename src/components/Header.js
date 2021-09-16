@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        height:'100vh',
+        height:'60vh',
         fontFamily: 'Roboto',
     },
 
@@ -26,8 +26,6 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down("sm")]:{    //switch font size when medium screen width (960px) detected
             fontSize:"3rem",
         },
-        padding: "1rem",
-
     },
 
     subtitle:{
@@ -38,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     goDown: {
         color: '#fff',
         fontSize: "5rem"
-    }
+    },
 }));
 
 export default function Header() {

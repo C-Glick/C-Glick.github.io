@@ -41,11 +41,14 @@ const useStyles = makeStyles((theme) => ({
   },
 
   paper: {
+    maxWidth: "130rem",
+    overflow: "hidden",
     padding: "50px",
     paddingLeft: "80px",
     paddingRight: "80px",
     [theme.breakpoints.down("xs")]:{
-      padding: "40px",
+      padding: "10px",
+      paddingTop: "40px",
     },
     textAlign: 'center',
     backgroundColor: Config.darkGrey,
@@ -56,6 +59,10 @@ const useStyles = makeStyles((theme) => ({
   title:{
     fontSize: '2em',
     textAlign: 'left',
+
+    [theme.breakpoints.down("xs")]:{
+      textAlign: "center",
+    },
   },
 
   menuItemIcon:{
@@ -64,18 +71,6 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("xs")]:{
         fontSize: 35,
     },
-  },
-
-  image:{
-    padding: "10px",
-    width: "50rem",
-    [theme.breakpoints.down("md")]:{
-      width: "33rem",
-    },
-    [theme.breakpoints.down("xs")]:{
-      width: "20rem",
-      float: "none",
-    } 
   },
 
   button:{
@@ -87,6 +82,10 @@ const useStyles = makeStyles((theme) => ({
 
   topButton:{
     float: "left",
+
+    [theme.breakpoints.down("xs")]:{
+      float: "none",
+    },
 
   },
 
@@ -103,27 +102,39 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "left",
     maxWidth: "80rem",
   },
+
+  image:{
+    padding: "10px",
+    width: "50rem",
+    [theme.breakpoints.down("md")]:{
+      width: "80%",
+    },
+    [theme.breakpoints.down("xs")]:{
+      width: "95%",
+      float: "none",
+    } 
+  },
   
   video:{
-    //16:9 aspect ratio
-    
-    margin: "20px",
+    margin: "40px",
+    //16:9 aspect ratio   
     width: "800px",
     height: "450px",
 
     [theme.breakpoints.down("md")]:{
-      width: "512px",
-      height: "288px",
+      //make sure when this is overflowing its container, this element stays centered
+      marginLeft: "50%",
+      transform: "translateX(-50%)",
+     
+      width: "70vw",
+      height: "calc(70vw/1.77)",  //16:9
     },
 
-    //TODO: percentage size at low screen resolutions
     [theme.breakpoints.down("xs")]:{
-      width: "304px",
-      height: "171px",
+      width: "90vw",
+      height: "calc(90vw/1.77)",  //16:9
       float: "none",
     } 
-
-
   }
 
 }));
@@ -154,7 +165,7 @@ export default function AboutPage() {
                   </Grid>
 
                   <Grid item xs={12}>
-                    <a href={"https://github.com/LTL-AERO/PX4-Autopilot/tree/stable"} className={classes.topButton} style={{textDecoration: 'none', color: 'inherit'}}>
+                    <a href={"https://github.com/LTL-AERO/PX4-Autopilot/tree/stable"} target="_blank" rel="noreferrer" className={classes.topButton} style={{textDecoration: 'none', color: 'inherit'}}>
                         <Button
                           variant="outlined"
                           className={classes.button}
@@ -164,7 +175,7 @@ export default function AboutPage() {
                         </Button>
                     </a>
 
-                    <a href={"http://temporallogic.org/research/ICUAS21/"} className={classes.topButton} style={{textDecoration: 'none', color: 'inherit'}}>
+                    <a href={"http://temporallogic.org/research/ICUAS21/"} target="_blank" rel="noreferrer" className={classes.topButton} style={{textDecoration: 'none', color: 'inherit'}}>
                         <Button
                           variant="outlined"
                           className={classes.button}
@@ -174,13 +185,13 @@ export default function AboutPage() {
                         </Button>
                     </a>
 
-                    <a href={"https://lib.dr.iastate.edu/aere_conf/87/"} className={classes.topButton} style={{textDecoration: 'none', color: 'inherit'}}>
+                    <a href={"https://lib.dr.iastate.edu/aere_conf/87/"} target="_blank" rel="noreferrer" className={classes.topButton} style={{textDecoration: 'none', color: 'inherit'}}>
                         <Button
                           variant="outlined"
                           className={classes.button}
                           startIcon={<LaunchIcon />}
                         >
-                          Publication
+                          IEEE Publication
                         </Button>
                     </a>
 
@@ -191,7 +202,9 @@ export default function AboutPage() {
                     
                     <p className={classes.para}>
                       The OpenUAS is an in development medium sized unmanned ariel system (UAS) that is
-                      easily accessible and affordable. We intend it to be used by other research
+                      easily accessible and affordable. Our team at Iowa State University is 
+                      comprised of 10-15 undergraduate students from a multitude of disciplines.
+                      We intend it to be used by other research
                       groups to support in flight development, or by high school students
                       who wish to explore the topic of aerospace, electrical, and computer engineering.
                     </p>
@@ -237,6 +250,23 @@ export default function AboutPage() {
                       rather than worrying about my tuition and I am very thankful for it.
                     </p>
 
+                    <h2 className={classes.header}>ICUAS 2021</h2>
+
+                    <p className={classes.para}> During The fall semester of 2020 our team submitted a research paper 
+                      to the International Conference on Unmanned Aircraft Systems (ICUAS). This involved summarizing many 
+                      technical aspects of our vehicle as well as presenting information gathered from test flights.
+                      In particular I added to the software and electrical sections of the paper, talking about our 
+                      software and electrical configuration, as well as our exploration into a simulated flight environment.
+                    </p>
+
+                    <p className={classes.para}> This culminated into our team submitting our research paper "OpenUAS Version 1.0"
+                      to the conference. The paper was <i>peer reviewed</i> by several judges from the event. It was accepted
+                      and eventually published by the IEEE. The published version can be read <a href="https://lib.dr.iastate.edu/aere_conf/87/"style={{color: 'deepskyblue'}}>here</a>.
+                      In addition to the paper, our team created a video presentation talking about what we have 
+                      accomplished on this project so far. That video is embedded above.
+
+                    </p>
+
                     <h2 className={classes.header}>Ignite Innovation Showcase</h2>
 
                     <p className={classes.para}>
@@ -247,9 +277,23 @@ export default function AboutPage() {
                       presentation. However I do have this backup recording that was taken a few days before the event.
                     </p>
 
-                    <YouTube className={classes.video} videoId="w_EEVMw7IcQ"/>
-                    
 
+                    <YouTube className={classes.video} videoId="w_EEVMw7IcQ"/>
+
+                    <h2 className={classes.header}>Electrical / Software Team Lead</h2>
+
+                    <p className={classes.para}> Going into my senior year at Iowa State University, I was elected to
+                      become the team lead of the electrical and software sub team. I worked closely with the 
+                      previous team lead to get a strong understanding of the systems in place and how to go about
+                      improving them in future iterations. I lead a subteam of 4 other members who, including myself, work on maintaining
+                      and improving the electronics and software that goes into creating the UAS. 
+                    </p>
+
+                    <p className={classes.para}> Our most recent efforts have been going into streamlining the layout 
+                      of the electronics bay inside the fuselage. In version 1.0 it was difficult to work on the electronics
+                      while they were inside the body of the vehicle. We are working closely with the design subteam to make 
+                      it easier to access and work on the electronics out in the field.
+                    </p>
                       
                   </Grid>
               </Grid>

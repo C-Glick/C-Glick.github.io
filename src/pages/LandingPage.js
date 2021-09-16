@@ -18,7 +18,11 @@ const useStyles = makeStyles((theme) => ({
     //TODO: need to fix white bar under background image when scrolling on chrome android
   },
 
-  spacer:{
+  spacerTop:{
+    height: "5vh",
+  },
+
+  spacerBottom:{
     height: "20vh",
   }
 
@@ -29,11 +33,12 @@ export default function LandingPage() {
 
   return (
     <div className={classes.root}>
+      <div className={classes.spacerTop}></div>
       {/* nav bar and title */}
       <Header />
       <ProjectCards />
       {/* spacer at the bottom of the page for breathing room */}
-      <div className={classes.spacer}></div>
+      <div className={classes.spacerBottom}></div>
     </div>
   );
 }
