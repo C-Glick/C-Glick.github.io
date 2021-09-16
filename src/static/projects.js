@@ -15,6 +15,15 @@
 
 const projects=[
     {
+        title:"PID Controller Demonstration",
+        desc:"Built a PID controller demo to teach others how to tune a PID controller. " +
+        "Used as a teaching tool for high school robotics team.",
+        date:"2021",
+        imageUrl: process.env.PUBLIC_URL + "/img/PID_workbench_compressed.jpg",
+        time: 800,
+        link: "/test6",
+    },
+    {
         title:"Boeing Internship",
         desc:"Contributed to a VR application for pilot and ground crew training. " + 
         "Utilizing cutting edge VR technology with an existing simulation framework.",
