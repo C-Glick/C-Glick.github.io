@@ -67,7 +67,7 @@ export default function ImageCard({ project }) {
   
   //control display effect
   const { ref, inView } = useInView({
-      threshold: 0.65,     //percent of reference div that needs to be visible to show card
+      threshold: 0.50,     //percent of reference div that needs to be visible to show card
       triggerOnce: true,  
   });
 
