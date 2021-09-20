@@ -5,6 +5,7 @@ import App from './App';
 
 import { HashRouter, useLocation } from "react-router-dom";
 
+//TODO: dont scroll to top on home page
 ReactDOM.render(
   <React.StrictMode>
     <HashRouter>

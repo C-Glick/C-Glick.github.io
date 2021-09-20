@@ -25,10 +25,10 @@ const projects=[
     },
     {
         title:"Boeing Internship",
-        desc:"Contributed to a VR application for pilot and ground crew training. " + 
-        "Utilizing cutting edge VR technology with an existing simulation framework.",
+        desc:"Assisted development of a VR application for pilot and ground crew training. " + 
+        "Utilizing cutting edge VR technology with an existing simulation software.",
         date:"2021",
-        imageUrl: process.env.PUBLIC_URL + "/img/oldtest.jpg",
+        imageUrl: process.env.PUBLIC_URL + "/img/Boeing/STL_compressed.jpg",
         time: 800,
         link: "/BoeingIntern",
     },
@@ -54,11 +54,11 @@ const projects=[
     },
     {
         title:"John Deere Web Development",
-        desc:"An audio responsive LED display, powered by a Raspberry Pi 3. " +
-        "The server, the Pi, directly controls the lights, and a secondary device, the client, sends commands via a TCP socket." +
-        "The client listens to playing audio to send commands to the lights, creating a spectrograph style display. ",
+        desc:"Acted a member of a small team to maintain and develop internal web utilities " +
+        "in HTML, ColdFusion, and Javascript. Wrote VBA macros to automate part acquisition " + 
+        "tasks.",
         date:"2020",
-        imageUrl: process.env.PUBLIC_URL + "/img/oldtest.jpg",
+        imageUrl: process.env.PUBLIC_URL + "/img/John_Deere_logo_wikipedia.jpg",
         time: 800,
         link: "/JohnDeere",
     },

@@ -110,6 +110,18 @@ let pageStyles = makeStyles((theme) => ({
         float: "none",
       } 
     },
+
+    imageMedium:{
+      padding: "10px",
+      width: "35rem",
+      [theme.breakpoints.down("md")]:{
+        width: "60%",
+      },
+      [theme.breakpoints.down("xs")]:{
+        width: "70%",
+        float: "none",
+      } 
+    },
     
     video:{
       margin: "20px",
