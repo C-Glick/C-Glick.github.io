@@ -19,9 +19,9 @@ const projects=[
         desc:"Built a PID controller demo to teach others how to tune a PID controller. " +
         "Used as a teaching tool for high school robotics team.",
         date:"2021",
-        imageUrl: process.env.PUBLIC_URL + "/img/PID_workbench_compressed.jpg",
+        imageUrl: process.env.PUBLIC_URL + "/img/PID_testbench_compressed.jpg",
         time: 800,
-        link: "/test6",
+        link: "/PIDLoopDemo",
     },
     {
         title:"Boeing Internship",
@@ -30,14 +30,14 @@ const projects=[
         date:"2021",
         imageUrl: process.env.PUBLIC_URL + "/img/oldtest.jpg",
         time: 800,
-        link: "/test6",
+        link: "/BoeingIntern",
     },
     {
         title:"Boeing Fellowship, OpenUAS",
         desc:"Autonomous landing, flight simulation, and improved power usage. " + 
         "I worked on an unmanned aircaft system (UAS) with the OpenUAS team at ISU during my Boeing fellowship. " + 
         "Culminating into our research paper being published by the IEEE at ICUAS 2021.",
-        date:"2020 - 2021",
+        date:"2020 - Current",
         imageUrl: process.env.PUBLIC_URL + "/img/OpenUAS/OpenUAS_2.jpg",
         time: 800,
         link: "/OpenUAS",
@@ -50,7 +50,7 @@ const projects=[
         date:"2020",
         imageUrl: process.env.PUBLIC_URL + "/img/responsive_LED_512.gif",
         time: 800,
-        link: "/test2",
+        link: "/ResponsiveLedDisplay",
     },
     {
         title:"John Deere Web Development",
@@ -60,16 +60,16 @@ const projects=[
         date:"2020",
         imageUrl: process.env.PUBLIC_URL + "/img/oldtest.jpg",
         time: 800,
-        link: "/test2",
+        link: "/JohnDeere",
     },
     {
         title:"FIRST Robotics, Mentor",
         desc:"I work closely with my high school robotics team to mentor in Java programming. " + 
         "Helping new students learn the language, and provide advice or assistance when needed.",
-        date:"2018 - current",
+        date:"2018 - Current",
         imageUrl: process.env.PUBLIC_URL + "/img/FRC/mentor/FRC2019_1_compressed.jpg",
         time: 800,
-        link: "/test3",
+        link: "/FirstMentor",
     },
     {
         title:"FIRST Robotics, Captain",
@@ -78,7 +78,7 @@ const projects=[
         date:"2017 - 2018",
         imageUrl: process.env.PUBLIC_URL + "/img/FRC/captain/FRC2018_4_compressed.jpg",
         time: 800,
-        link: "/test4",
+        link: "/FirstCaptain",
     },
     {
         title:"FIRST Robotics, Programmer",
@@ -88,7 +88,7 @@ const projects=[
         date:"2016 - 2017",
         imageUrl: process.env.PUBLIC_URL + "/img/FRC/programmer/FRC2017_1_compressed.jpg",
         time: 800,
-        link: "/test5",
+        link: "/FirstProgrammer",
     },
 ]
 
