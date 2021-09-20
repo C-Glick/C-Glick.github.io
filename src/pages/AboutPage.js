@@ -14,6 +14,8 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 import LinkedInIcon from '@material-ui/icons/LinkedIn'
 
 
+//TODO: replace with centralized style doc
+
 const useStyles = makeStyles((theme) => ({
   root: {
     minHeight:"100vh",
@@ -126,6 +128,8 @@ export default function AboutPage() {
     setStartAnim(true);
   },[]);
 
+
+  //TODO: header sections
   return (
     <div className={classes.root}>
       <div className={classes.spacer}></div>
@@ -176,14 +180,20 @@ export default function AboutPage() {
                   <Grid item xs={12}>
                     <img className={classes.image} src={process.env.PUBLIC_URL + "/img/profile_picture.png"} alt={"Colton Glick"}></img>
                     <p className={classes.para}>
-                      My name is Colton Glick, and I am currently an undergraduate student studying software engineering at Iowa
+                      My name is Colton Glick, and I am currently an undergraduate studying software engineering at Iowa
                       State University. 
+                    </p>
+
+                    <p className={classes.para}>
+                      This website serves as my portfolio of projects that I have worked on so far. I invite
+                      you to look through the home page at some of my accomplishments. As always you 
+                      can contact me at <a href = "mailto:colton.glick@gmail.com" style={{color: "deepSkyBlue"}}>colton.glick@gmail.com</a> anytime.
                     </p>
 
                     <p className={classes.para}>
                       I enjoy programming and coming up with clever solutions to challenging problems.
                       I have worked on numerous projects that can be viewed on the home page, 
-                      ranging from Boeing flight simulators to large scale competitive robotics to this very website.
+                      ranging from Boeing flight simulators to large scale competitive robots to this very website.
                     </p>
 
                     {/* TODO add more detail */}
@@ -194,9 +204,9 @@ export default function AboutPage() {
 
                     <p className={classes.para}>
                       Some of my hobbies, apart from programming, include reading, biking, and video games.
-                      I am currently reading The Stormlight Archive by Brandon Sanderson.My favorite video games
+                      I am currently reading The Stormlight Archive by Brandon Sanderson. My favorite video games
                       include Half-Life Alyx, Kerbal Space Program, and The Legend of Zelda. I have recently
-                      been getting into historical European martial arts (HEMA) and have been enjoying it thoroughly!
+                      been getting into historical European martial arts (HEMA) and have been thoroughly enjoying it!
                     </p>
 
                     <p className={classes.para}>
@@ -209,7 +219,7 @@ export default function AboutPage() {
                     From there, I kept exploring computers until I was admitted to Iowa State University (ISU) for software
                       engineering.
                     </p>
-
+                    
                     {/*TODO less about JD */}
                     <p className={classes.para}>
                       I began at John Deere as a part-time student around the same time as ISU. There 

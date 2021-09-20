@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        height:'60vh',
+        height:'50vh',
         fontFamily: 'Roboto',
     },
 
