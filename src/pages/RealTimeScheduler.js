@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import * as Config from "../static/config";
-import pageStyles from '../static/PageStyles';
+import {rawStyles} from '../static/PageStyles';
 
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -10,22 +10,30 @@ import Slide from '@material-ui/core/Slide';
 import Button from '@material-ui/core/Button';
 
 import GitHubIcon from '@material-ui/icons/GitHub';
+import { PauseCircleFilled } from '@material-ui/icons';
 
 //use styles from static/pageStyles
-const useStyles = pageStyles;
+const useStyles = rawStyles;
 
 class RealTimeScheduler extends React.Component{
 
-  state = {
-    testText: "test",
-    testNum: 0
-  }
 
   constructor(){
     super();
+    this.state = {
+      inputFile: null,
+    }
   }
 
-  
+
+  parseFile(){
+    const file = document.getElementById('raised-button-file').files[0];
+    console.log(file);
+    this.setState({inputFile: file});
+    this.setState({inputFileName: file.name});
+    //var reader = new FileReader();
+    //reader.readAsText(document.getElementById("raised-button-file").files[0]);
+  }
 
   test(){
     this.setState({testText: "text changed"});
@@ -77,21 +85,27 @@ class RealTimeScheduler extends React.Component{
                         a PID control loop.
 
                         
-                        <Button
-                            variant="outlined"
-                            className={classes.button}
-                            startIcon={<GitHubIcon />}
-                            onClick = {() => {this.test(); }}
-                          >
-                            {this.state.testText}
+
+                        <input
+                          accept=".json"
+                          className={classes.input}
+                          style={{ display: 'none' }}
+                          id="userInputFile"
+                          type="file"
+                          onChange={() => {this.parseFile(); }}
+                        />
+                        <label htmlFor="userInputFile">
+                          <Button variant="outlined" component="span" className={classes.button}>
+                            Upload file: {this.state.inputFileName}
                           </Button>
+                        </label> 
+ 
 
                         <div id="testdiv">
-
+                          {this.state.testText}
                         </div>
                       </p>
 
-                      
                         
                     </Grid>
                 </Grid>

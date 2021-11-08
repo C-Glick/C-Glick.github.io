@@ -2,7 +2,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import * as Config from "../static/config";
 
 //Styles used on all project pages
-let pageStyles = makeStyles((theme) => ({
+//raw styles used for class based components
+export let rawStyles = theme => ({
     root: {
       minHeight:"100vh",
       backgroundImage:  Config.background,
@@ -149,6 +150,8 @@ let pageStyles = makeStyles((theme) => ({
         color: 'deepskyblue',
     },
   
-  }));
+  });
 
+  //page styles used for function based components
+  let pageStyles = makeStyles(rawStyles);
   export default pageStyles;
