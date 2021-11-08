@@ -8,3 +8,5 @@ export const background = "linear-gradient(to top right, #38247e, #37338e, #3442
 export const darkGrey = "rgb(40,40,40)"
 export const mediumGrey = "rgb(80,80,80)"
 export const lightGrey = "rgb(120,120,120)"
+//reveal time used for page animation reveal speed, in ms
+export const revealTime = 500;

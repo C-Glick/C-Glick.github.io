@@ -33,7 +33,7 @@ export default function Page() {
       <div className={classes.spacer}></div>
 
       <div className={classes.container}>
-        <Slide in={startAnim} {...(startAnim ? { timeout: 500 } : {})} 
+        <Slide in={true} timeout={Config.revealTime} 
         direction="up">
           <Paper className={classes.paper}>
               <Grid container spacing={3} direction="row">

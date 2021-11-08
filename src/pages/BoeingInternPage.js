@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 
 import pageStyles from '../static/PageStyles';
+import * as Config from '../static/config';
 
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Slide from '@material-ui/core/Slide';
+import { configure } from '@testing-library/dom';
 
 
 //use styles from static/pageStyles
@@ -26,7 +28,7 @@ export default function Page() {
       <div className={classes.spacer}></div>
 
       <div className={classes.container}>
-        <Slide in={startAnim} {...(startAnim ? { timeout: 500 } : {})} 
+        <Slide in={true} timeout={Config.revealTime} 
         direction="up">
           <Paper className={classes.paper}>
               <Grid container spacing={3} direction="row">

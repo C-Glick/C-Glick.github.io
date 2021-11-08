@@ -122,20 +122,13 @@ const useStyles = makeStyles((theme) => ({
 export default function AboutPage() {
   const classes = useStyles();
 
-  //animation for paper
-  const [startAnim, setStartAnim] = useState(false);
-  useEffect(()=>{
-    setStartAnim(true);
-  },[]);
-
-
   //TODO: header sections
   return (
     <div className={classes.root}>
       <div className={classes.spacer}></div>
 
       <div className={classes.container}>
-        <Slide in={startAnim} {...(startAnim ? { timeout: 500 } : {})} 
+        <Slide in={true} timeout={Config.revealTime} 
         direction="up">
           <Paper className={classes.paper}>
               <Grid container spacing={3} direction="row">

@@ -10,6 +10,7 @@ import AboutPage from "./pages/AboutPage"
 import OpenUASPage from "./pages/OpenUASPage"
 import PIDLoopDemoPage from "./pages/PIDLoopDemoPage"
 import BoeingInternPage from "./pages/BoeingInternPage"
+import RealTimeScheduler from "./pages/RealTimeScheduler"
 
 import NotFoundPage from "./pages/NotFoundPage"
 import ConstructionPage from "./pages/ConstructionPage"
@@ -59,6 +60,7 @@ export default function App() {
         <Route path="/FirstMentor"><ConstructionPage /></Route>
         <Route path="/FirstCaptain"><ConstructionPage /></Route>
         <Route path="/FirstProgrammer"><ConstructionPage /></Route>
+        <Route path="/RealTimeScheduler"><RealTimeScheduler /></Route>
 
         <Route path="/:id"><NotFoundPage /></Route>
       </Switch>
