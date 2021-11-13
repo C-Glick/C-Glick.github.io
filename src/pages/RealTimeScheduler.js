@@ -11,32 +11,142 @@ import Button from '@material-ui/core/Button';
 
 import GitHubIcon from '@material-ui/icons/GitHub';
 import { PauseCircleFilled } from '@material-ui/icons';
+import { List } from '@material-ui/core';
+
+//imports for scheduling
+import Heap from 'heap-js';
+
 
 //use styles from static/pageStyles
 const useStyles = rawStyles;
 
 class RealTimeScheduler extends React.Component{
 
-
   constructor(){
     super();
     this.state = {
       inputFile: null,
+      taskSet: [],
+      rmsValues: {
+        schedulable: "false",
+        usage: 0
+      },
+      schedule: [],
+    }  
+  }
+
+  //calculate the least common multiple for scheduling
+  LCM = (...arr) => {
+    const gcd2 = (a, b) => {
+       // Greatest common divisor of 2 integers
+       if(!b) return b===0 ? a : NaN;
+          return gcd2(b, a%b);
+    };
+    const lcm2 = (a, b) => {
+       // Least common multiple of 2 integers
+       return a * b / gcd2(a, b);
+    }
+    // Least common multiple of a list of integers
+    let n = 1;
+    for(let i = 0; i < arr.length; ++i){
+       n = lcm2(arr[i], n);
+    }
+    return n;
+ };
+
+  rms(){
+    var isSchedulable = this.rmsSchedulabilityCheck();
+    if(isSchedulable){
+      this.rmsSchedule();
     }
   }
 
+  rmsSchedulabilityCheck(){
+    if(this.state.taskSet == null){
+      return false;
+    }
+    let n = this.state.taskSet.length;
 
-  parseFile(){
-    const file = document.getElementById('raised-button-file').files[0];
-    console.log(file);
-    this.setState({inputFile: file});
-    this.setState({inputFileName: file.name});
-    //var reader = new FileReader();
-    //reader.readAsText(document.getElementById("raised-button-file").files[0]);
+    //Start with quick check
+    var usage = 0 ;
+    this.state.taskSet.forEach(task  => {
+      usage += task.computation / task.period;
+    })
+
+    if(usage <= n * (Math.pow(2, 1/n) - 1)){
+      this.setState({rmsValues: {schedulable: "true", usage: usage}});
+      return true;
+    }
+    //TODO exact analysis of task set
+    else{
+
+      this.setState({rmsValues: {schedulable: "false", usage: usage}});
+      return true;
+    }
   }
 
-  test(){
-    this.setState({testText: "text changed"});
+  //TODO optimize
+  rmsSchedule(){
+    //schedule tasks until lcm of all periods
+    var lcm = this.LCM(...this.state.taskSet.map(task => task.period));
+    //sort tasks by period giving priority based on period
+    const taskComparator = (a, b) => a.period - b.period;
+    var orderedTaskSet = this.state.taskSet.sort(taskComparator);
+
+    //init working values of tasks
+    for (const task of orderedTaskSet){
+      task.numScheduled = 0;
+      task.startTime = 0;
+      task.endTime = 0;
+    }
+    
+    const toSchedule = new Heap(taskComparator);
+    var time = 0;
+    var rmsSchedule = [];
+
+    while(time < lcm){
+
+      //update toSchedule
+      for (const task of orderedTaskSet){
+        if(time >= task.period * task.numScheduled && !toSchedule.contains(task)){
+          toSchedule.push(task);
+        }
+      }
+
+      //schedule the highest priority task
+      var task = toSchedule.pop();
+      if(task){
+        task.startTime = time;
+        task.endTime = time + task.computation;
+        task.numScheduled++;
+        //make a deep copy of task an put it in the rms schedule
+        rmsSchedule.push(JSON.parse(JSON.stringify(task)));
+
+        time += task.computation;
+      }else{
+        time++;
+      }
+    }
+
+    this.setState({rmsSchedule: rmsSchedule});
+  }
+
+  parseFile(){
+    const file = document.getElementById('userInputFile').files[0];
+    this.setState({inputFileName: file.name});
+
+    //new file reader to read input task set
+    let reader = new FileReader();
+
+    //setup the callback to run when the file is ready
+    reader.onload = (event) => {
+      let str = event.target.result;
+      let json = JSON.parse(str);
+      this.setState({taskSet: json});
+    }
+
+    //dispatch command to read the file
+    reader.readAsText(file);
   }
 
   render() {
@@ -76,17 +186,17 @@ class RealTimeScheduler extends React.Component{
                       <img className={classes.image} src={process.env.PUBLIC_URL + "/img/PID_testbench_2_compressed.jpg"} alt={"Final PID test bench project"}></img>
                       
                       <p className={classes.para}>
-                        The PID tuning testbench is a small learning control panel designed to teach 
-                        students the basics of a proportional, integral, derivative control loop. 
-                        It features analog input for the P I and D coefficients, allowing the user 
-                        to learn the result of modifying each individually. The output gear on the left
-                        is driven by a small continuous servo linked to a rotary encoder for feedback.
-                        The computations take place on an Arduino Uno, running my implementation of 
-                        a PID control loop.
+                        This page is a demonstration of a real time system task scheduler which 
+                        shows of concepts learned in my Real-Time Systems class Com S 458 at Iowa State University.                        
+                      </p>
 
-                        
-
-                        <input
+                      <p className={classes.para}>
+                        To begin, select a prepared task set to schedule or upload your own JSON file containing a task set. 
+                        The file should be formatted as follows:  
+                         TODO format JSON code
+                      </p>
+                     
+                      <input
                           accept=".json"
                           className={classes.input}
                           style={{ display: 'none' }}
@@ -99,12 +209,14 @@ class RealTimeScheduler extends React.Component{
                             Upload file: {this.state.inputFileName}
                           </Button>
                         </label> 
+                        <Button variant="outlined" component="span" className={classes.button} onClick={() => {this.rms(); }}>
+                          Run RMS
+                        </Button>
  
 
                         <div id="testdiv">
                           {this.state.testText}
                         </div>
-                      </p>
 
                         
                     </Grid>
