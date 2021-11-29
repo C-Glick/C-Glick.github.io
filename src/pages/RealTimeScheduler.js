@@ -12,6 +12,8 @@ import Button from '@material-ui/core/Button';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import { PauseCircleFilled } from '@material-ui/icons';
 import { List } from '@material-ui/core';
+import { Timeline } from 'react-svg-timeline'
+
 
 //imports for scheduling
 import Heap from 'heap-js';
@@ -106,7 +108,7 @@ class RealTimeScheduler extends React.Component{
 
     while(time < lcm){
 
-      //update toSchedule
+      //update toSchedule adding tasks when required
       for (const task of orderedTaskSet){
         if(time >= task.period * task.numScheduled && !toSchedule.contains(task)){
           toSchedule.push(task);
@@ -152,6 +154,35 @@ class RealTimeScheduler extends React.Component{
   render() {
     const { classes } = this.props;
 
+    const laneId = 'demo-lane'
+  const lanes = [
+    {
+      laneId,
+      label: 'Demo Lane',
+    },
+  ]
+  const events = [
+    {
+      eventId: 'event-1',
+      laneId: laneId,
+      startTimeMillis: 5,
+    },
+    {
+      eventId: 'event-2',
+      laneId,
+      startTimeMillis: 10,
+      endTimeMillis: 20,
+    },
+    {
+      eventId: 'event-3',
+      laneId,
+      startTimeMillis: 15,
+      endTimeMillis: 300000000,
+    },
+  ]
+  const dateFormat = (value) => value;
+
+
     return (
 
 
@@ -183,7 +214,6 @@ class RealTimeScheduler extends React.Component{
                     </Grid>
 
                     <Grid item xs={12} >
-                      <img className={classes.image} src={process.env.PUBLIC_URL + "/img/PID_testbench_2_compressed.jpg"} alt={"Final PID test bench project"}></img>
                       
                       <p className={classes.para}>
                         This page is a demonstration of a real time system task scheduler which 
@@ -218,6 +248,7 @@ class RealTimeScheduler extends React.Component{
                           {this.state.testText}
                         </div>
 
+                        <Timeline width={600} height={300} events={events} lanes={lanes} dateFormat={dateFormat} />
                         
                     </Grid>
                 </Grid>

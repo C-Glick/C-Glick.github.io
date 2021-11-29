@@ -16,6 +16,7 @@
     "react-router": "^5.2.1",
     "react-router-dom": "^5.3.0",
     "react-scroll": "^1.8.4",
+    "react-svg-timeline": "^0.18.0",
     "react-youtube": "^7.13.1",
     "web-vitals": "^1.1.2"
   },
