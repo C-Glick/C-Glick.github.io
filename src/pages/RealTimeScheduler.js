@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import * as Config from "../static/config";
 import {rawStyles} from '../static/PageStyles';
+import { ZoomLevels } from 'react-svg-timeline';
 
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -10,9 +11,16 @@ import Slide from '@material-ui/core/Slide';
 import Button from '@material-ui/core/Button';
 
 import GitHubIcon from '@material-ui/icons/GitHub';
-import { PauseCircleFilled } from '@material-ui/icons';
+import { MinimizeSharp, PauseCircleFilled } from '@material-ui/icons';
 import { List } from '@material-ui/core';
+
 import { Timeline } from 'react-svg-timeline'
+import { createTimelineTheme } from 'react-svg-timeline';
+import { useMemo } from 'react'
+import makeStyles from '@material-ui/core/styles/makeStyles'
+import { createTheme } from '@material-ui/core';
+
+
 
 
 //imports for scheduling
@@ -154,34 +162,53 @@ class RealTimeScheduler extends React.Component{
   render() {
     const { classes } = this.props;
 
-    const laneId = 'demo-lane'
-  const lanes = [
-    {
-      laneId,
-      label: 'Demo Lane',
-    },
-  ]
-  const events = [
-    {
-      eventId: 'event-1',
-      laneId: laneId,
-      startTimeMillis: 5,
-    },
-    {
-      eventId: 'event-2',
-      laneId,
-      startTimeMillis: 10,
-      endTimeMillis: 20,
-    },
-    {
-      eventId: 'event-3',
-      laneId,
-      startTimeMillis: 15,
-      endTimeMillis: 300000000,
-    },
-  ]
-  const dateFormat = (value) => value;
+    const dateFormat = (value) =>  new Date(value).toLocaleString();  
 
+    //TODO timeline themeing not working
+    const timelineTheme= createTheme({
+      palette: {
+        primary: {
+          main: '#0052cc',
+        },
+        secondary: {
+          main: '#edf2ff',
+        },
+      },
+    });
+
+    const theme = createTimelineTheme(timelineTheme);  
+
+    const laneId = 'demo-lane'
+    const lanes = [
+      {
+        laneId,
+        label: 'Demo Lane',
+      },
+    ]
+    const events = [
+      {
+        eventId: 'event-1',
+        laneId: laneId,
+        startTimeMillis: 1606712284 + 0,
+        tooltip: "test toll tip"
+      },
+      {
+        eventId: 'event-2',
+        laneId,
+        startTimeMillis: 10,
+        endTimeMillis: 20,
+        
+      },
+      {
+        eventId: 'event-3',
+        laneId,
+        startTimeMillis: 15,
+        endTimeMillis: 3000000000,
+        tooltip: "start time: x \n End time: y"
+      },
+    ]
+
+ 
 
     return (
 
@@ -248,7 +275,16 @@ class RealTimeScheduler extends React.Component{
                           {this.state.testText}
                         </div>
 
-                        <Timeline width={600} height={300} events={events} lanes={lanes} dateFormat={dateFormat} />
+                        <Timeline width={600}
+                         height={300} 
+                         events={events} 
+                         lanes={lanes}
+                         laneDisplayMode={'expanded'}
+                         zoomLevels = {['10 mins', '8 ms']}
+                         enableEventClustering={false}
+                         theme = {timelineTheme}
+                         //customRange = {[315529200000, 1640991600000]}
+                         dateFormat={dateFormat} />
                         
                     </Grid>
                 </Grid>
