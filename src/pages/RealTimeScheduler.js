@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import * as Config from "../static/config";
 import {rawStyles} from '../static/PageStyles';
-import { ZoomLevels } from 'react-svg-timeline';
+
 
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -11,15 +11,11 @@ import Slide from '@material-ui/core/Slide';
 import Button from '@material-ui/core/Button';
 
 import GitHubIcon from '@material-ui/icons/GitHub';
-import { MinimizeSharp, PauseCircleFilled } from '@material-ui/icons';
-import { List } from '@material-ui/core';
+
 
 import { Timeline } from 'react-svg-timeline'
 import { createTimelineTheme } from 'react-svg-timeline';
-import { useMemo } from 'react'
-import makeStyles from '@material-ui/core/styles/makeStyles'
 import { createTheme } from '@material-ui/core';
-import { createMuiTheme} from '@material-ui/core';
 
 
 
@@ -35,6 +31,8 @@ class RealTimeScheduler extends React.Component{
 
   constructor(){
     super();
+    this.zeroTime = 1618290000000;
+
     this.state = {
       inputFile: null,
       taskSet: [],
@@ -42,23 +40,9 @@ class RealTimeScheduler extends React.Component{
         schedulable: "false",
         usage: 0
       },
-      schedule: [],
-      events:[
-        {
-          eventId: 'event-2',
-          landId: 'demo-lane',
-          startTimeMillis: 0,
-          endTimeMillis: 0 + 20000,
-          
-        },
-        {
-          eventId: 'event-3',
-          laneId: 'demo-lane',
-          startTimeMillis: 0,
-          endTimeMillis: 0 + 360000000,
-          tooltip: "start time: x \n End time: y"
-        },
-      ],
+      rmsSchedule: [],
+      events:[],
+      
     }  
   }
 
@@ -85,6 +69,10 @@ class RealTimeScheduler extends React.Component{
     var isSchedulable = this.rmsSchedulabilityCheck();
     if(isSchedulable){
       this.rmsSchedule();
+    }else{
+      //TODO all to visualize schedule anyway
+      alert("This task set is not schedulable")
+      this.rmsSchedule();
     }
   }
 
@@ -108,7 +96,7 @@ class RealTimeScheduler extends React.Component{
     else{
 
       this.setState({rmsValues: {schedulable: "false", usage: usage}});
-      return true;
+      return false;
     }
   }
 
@@ -155,7 +143,8 @@ class RealTimeScheduler extends React.Component{
       }
     }
 
-    this.setState({rmsSchedule: rmsSchedule});
+    this.setState({rmsSchedule});
+    this.displaySchedule(rmsSchedule, 'rms-lane');
   }
 
   parseFile(){
@@ -177,65 +166,109 @@ class RealTimeScheduler extends React.Component{
   }
 
   //converts schedule into a format the timeline library can display
-  displaySchedule(){
-    const startTime = 1618290000000;
-    let events;
+  displaySchedule(eventsToFormat, lane){
+    let events = [];
 
-    for (const task of this.state.rmsSchedule){
-      events += {
-        eventId: task.id,
-        laneId: 'demo-lane',
-        startTimeMillis: startTime + (task.startTime * 1000),
-        endTimeMillis: startTime + (task.endTime * 1000),
-      };
+    for (const task of eventsToFormat){
+      events.push({
+        eventId: task.id + "_" + task.numScheduled,
+        laneId: lane,
+        startTimeMillis: this.zeroTime + (task.startTime * 1000),
+        endTimeMillis: this.zeroTime + (task.endTime * 1000),
+        tooltip: "Task #" + task.id + 
+          "\nStart time:" + task.startTime + "s" +
+          "\nEnd time: " + task.endTime + "s",
+        color: this.randomColor(task.id)
+      });
     }
 
     this.setState({events: events});
   }
 
+  //Generates a random color to display each of the tasks in based in the task's id
+  randomColor(seed){
+    return this.hslToRgb(Math.cos(seed) * 0.5 + 0.5, 1, 0.5);
+  }
+
+  /**
+ * Converts an HSL color value to RGB. Conversion formula
+ * adapted from http://en.wikipedia.org/wiki/HSL_color_space.
+ * Assumes h, s, and l are contained in the set [0, 1] and
+ * returns r, g, and b in the set [0, 255].
+ *
+ * @param   {number}  h       The hue
+ * @param   {number}  s       The saturation
+ * @param   {number}  l       The lightness
+ * @return  {String}           The RGB representation
+ */
+hslToRgb(h, s, l){
+  var r, g, b;
+
+  if(s == 0){
+      r = g = b = l; // achromatic
+  }else{
+      var hue2rgb = function hue2rgb(p, q, t){
+          if(t < 0) t += 1;
+          if(t > 1) t -= 1;
+          if(t < 1/6) return p + (q - p) * 6 * t;
+          if(t < 1/2) return q;
+          if(t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+          return p;
+      }
+
+      var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+      var p = 2 * l - q;
+      r = hue2rgb(p, q, h + 1/3);
+      g = hue2rgb(p, q, h);
+      b = hue2rgb(p, q, h - 1/3);
+  }
+
+  return "rgb(" + Math.round(r * 255) + ", " + Math.round(g * 255) + ", " + Math.round(b * 255);
+}
+
   render() {
     const { classes } = this.props;
 
-    const dateFormat = (value) =>  new Date(value).toLocaleString();  
+    //Time format for printing events
+    const dateFormat = (value) =>  Math.floor((value - this.zeroTime) * 0.001) + "s";  
 
-    const theme = createTimelineTheme(createMuiTheme(), {
+    //Timeline theme
+    const theme = createTimelineTheme(createTheme(), {
       tooltip: {
-        backgroundColor: 'pink',
+        backgroundColor: 'rgba(70, 70, 70, 0.6)',
       },
       xAxis:{
-        //backgroundColor: 'pink',
-        labelColor: 'rgba(255, 255, 255, 0.5)',
+        //no x axis labeling
+        labelColor: 'rgba(255, 255, 255, 0)',
       }
     }) 
 
-    const laneId = 'demo-lane'
+    //Lanes to display in timeline, at least 1 is required
     const lanes = [
       {
-        laneId,
-        label: 'Demo Lane',
+        laneId: "rms-lane",
+        label: 'RMS Schedule',
+        color: 'white'
       },
+      /*{
+        laneId: 'dummy-lane',
+        label: 'dummy Lane',
+        color: 'white'
+      }*/
     ]
 
-    const startTime = 1618290000000;
-
-    const events = [
-     
+    //Dummy events to populate timeline, required because 
+    //cannot display timeline with an empty events array, but can
+    //place the event on a hidden lane to not be visible
+    const dummyEvents = [
       {
         eventId: 'event-2',
-        laneId: 'demo-lane',
-        startTimeMillis: startTime,
-        endTimeMillis: startTime + 20000,
+        laneId: 'dummy-lane',
+        startTimeMillis: this.zeroTime,
+        tooltip: "test tooltip"
         
       },
-      {
-        eventId: 'event-3',
-        laneId: 'demo-lane',
-        startTimeMillis: startTime,
-        endTimeMillis: startTime + 360000000,
-        tooltip: "start time: x \n End time: y"
-      },
     ]
-
  
 
     return (
@@ -289,32 +322,43 @@ class RealTimeScheduler extends React.Component{
                           type="file"
                           onChange={() => {this.parseFile(); }}
                         />
-                        <label htmlFor="userInputFile">
-                          <Button variant="outlined" component="span" className={classes.button}>
-                            Upload file: {this.state.inputFileName}
-                          </Button>
-                        </label> 
-                        <Button variant="outlined" component="span" className={classes.button} onClick={() => {this.rms(); }}>
-                          Run RMS
+                      <label htmlFor="userInputFile">
+                        <Button variant="outlined" component="span" className={classes.button}>
+                          Upload file: {this.state.inputFileName}
                         </Button>
+                      </label> 
+                      <Button variant="outlined" component="span" className={classes.button} onClick={() => {this.rms(); }}>
+                        Run RMS
+                      </Button>
  
 
-                        <div id="testdiv">
-                          {this.state.testText}
-                        </div>
+                      <div id="testdiv">
+                        {this.state.testText}
+                      </div>
 
                         
-                        <Timeline width={1000}
-                         height={300} 
-                         //TODO get events from state of component 
-                         events={events} 
-                         lanes={lanes}
-                         laneDisplayMode={'expanded'}
-                         zoomLevels = {['1 day', '1 hour']}
-                         enableEventClustering={false}
-                         theme = {theme}
-                         //customRange = {[315529200000, 1640991600000]}
-                         dateFormat={dateFormat} />
+                      <p className={classes.para}>
+                        Timeline controls:<br></br>
+                        <ul>
+                          <li>Pan: click + drag</li>
+                          <li>Zoom in: left click</li>
+                          <li>Zoom out: alt + click</li>
+                          <li>Reset view: ESC</li>
+                        </ul>
+                      </p>
+
+                      <Timeline width={1000}
+                        height={400} 
+                        //concat the dummyEvents with the real events, events param 
+                        //cannot be empty
+                        events={dummyEvents.concat(this.state.events)} 
+                        lanes={lanes}
+                        laneDisplayMode={'expanded'}
+                        zoomLevels = {['1 day', '1 hour', '10 mins', '5 mins', '1 min', '10 secs', '1 sec']}
+                        enableEventClustering={false}
+                        theme = {theme}
+                        dateFormat={dateFormat} 
+                      />
                         
                     </Grid>
                 </Grid>
