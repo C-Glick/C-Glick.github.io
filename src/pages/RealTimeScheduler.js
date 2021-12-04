@@ -19,6 +19,7 @@ import { createTimelineTheme } from 'react-svg-timeline';
 import { useMemo } from 'react'
 import makeStyles from '@material-ui/core/styles/makeStyles'
 import { createTheme } from '@material-ui/core';
+import { createMuiTheme} from '@material-ui/core';
 
 
 
@@ -42,6 +43,22 @@ class RealTimeScheduler extends React.Component{
         usage: 0
       },
       schedule: [],
+      events:[
+        {
+          eventId: 'event-2',
+          landId: 'demo-lane',
+          startTimeMillis: 0,
+          endTimeMillis: 0 + 20000,
+          
+        },
+        {
+          eventId: 'event-3',
+          laneId: 'demo-lane',
+          startTimeMillis: 0,
+          endTimeMillis: 0 + 360000000,
+          tooltip: "start time: x \n End time: y"
+        },
+      ],
     }  
   }
 
@@ -159,24 +176,37 @@ class RealTimeScheduler extends React.Component{
     reader.readAsText(file);
   }
 
+  //converts schedule into a format the timeline library can display
+  displaySchedule(){
+    const startTime = 1618290000000;
+    let events;
+
+    for (const task of this.state.rmsSchedule){
+      events += {
+        eventId: task.id,
+        laneId: 'demo-lane',
+        startTimeMillis: startTime + (task.startTime * 1000),
+        endTimeMillis: startTime + (task.endTime * 1000),
+      };
+    }
+
+    this.setState({events: events});
+  }
+
   render() {
     const { classes } = this.props;
 
     const dateFormat = (value) =>  new Date(value).toLocaleString();  
 
-    //TODO timeline themeing not working
-    const timelineTheme= createTheme({
-      palette: {
-        primary: {
-          main: '#0052cc',
-        },
-        secondary: {
-          main: '#edf2ff',
-        },
+    const theme = createTimelineTheme(createMuiTheme(), {
+      tooltip: {
+        backgroundColor: 'pink',
       },
-    });
-
-    const theme = createTimelineTheme(timelineTheme);  
+      xAxis:{
+        //backgroundColor: 'pink',
+        labelColor: 'rgba(255, 255, 255, 0.5)',
+      }
+    }) 
 
     const laneId = 'demo-lane'
     const lanes = [
@@ -185,25 +215,23 @@ class RealTimeScheduler extends React.Component{
         label: 'Demo Lane',
       },
     ]
+
+    const startTime = 1618290000000;
+
     const events = [
-      {
-        eventId: 'event-1',
-        laneId: laneId,
-        startTimeMillis: 1606712284 + 0,
-        tooltip: "test toll tip"
-      },
+     
       {
         eventId: 'event-2',
-        laneId,
-        startTimeMillis: 10,
-        endTimeMillis: 20,
+        laneId: 'demo-lane',
+        startTimeMillis: startTime,
+        endTimeMillis: startTime + 20000,
         
       },
       {
         eventId: 'event-3',
-        laneId,
-        startTimeMillis: 15,
-        endTimeMillis: 3000000000,
+        laneId: 'demo-lane',
+        startTimeMillis: startTime,
+        endTimeMillis: startTime + 360000000,
         tooltip: "start time: x \n End time: y"
       },
     ]
@@ -275,14 +303,16 @@ class RealTimeScheduler extends React.Component{
                           {this.state.testText}
                         </div>
 
-                        <Timeline width={600}
+                        
+                        <Timeline width={1000}
                          height={300} 
+                         //TODO get events from state of component 
                          events={events} 
                          lanes={lanes}
                          laneDisplayMode={'expanded'}
-                         zoomLevels = {['10 mins', '8 ms']}
+                         zoomLevels = {['1 day', '1 hour']}
                          enableEventClustering={false}
-                         theme = {timelineTheme}
+                         theme = {theme}
                          //customRange = {[315529200000, 1640991600000]}
                          dateFormat={dateFormat} />
                         
