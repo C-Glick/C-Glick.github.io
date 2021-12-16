@@ -10,14 +10,9 @@ import Grid from '@material-ui/core/Grid';
 import Slide from '@material-ui/core/Slide';
 import Button from '@material-ui/core/Button';
 
-import GitHubIcon from '@material-ui/icons/GitHub';
-
-
 import { Timeline } from 'react-svg-timeline'
 import { createTimelineTheme } from 'react-svg-timeline';
 import { createTheme } from '@material-ui/core';
-
-
 
 
 //imports for scheduling
@@ -40,7 +35,12 @@ class RealTimeScheduler extends React.Component{
         schedulable: "false",
         usage: 0
       },
+      edfValues: {
+        schedulable: "false",
+        usage: 0
+      },
       rmsSchedule: [],
+      edfSchedule: [],
       events:[],
       
     }  
@@ -70,9 +70,18 @@ class RealTimeScheduler extends React.Component{
     if(isSchedulable){
       this.rmsSchedule();
     }else{
-      //TODO all to visualize schedule anyway
-      alert("This task set is not schedulable")
-      this.rmsSchedule();
+      alert("RMS quick schedulability check failed, this task set may not be schedulable. Attempting exact analysis...")
+      var success = this.rmsSchedule();
+      if(success){
+        let values = this.state.rmsValues;
+        values.schedulable = "true";
+        this.setState({rmsValues: values});
+      }else{
+        let values = this.state.rmsValues;
+        values.schedulable = "false";
+        this.setState({rmsValues: values});
+        alert("This task is not schedulable, tasks that missed their deadlines are colored grey. Hover over them for details.")
+      }
     }
   }
 
@@ -91,17 +100,17 @@ class RealTimeScheduler extends React.Component{
     if(usage <= n * (Math.pow(2, 1/n) - 1)){
       this.setState({rmsValues: {schedulable: "true", usage: usage}});
       return true;
-    }
-    //TODO exact analysis of task set
-    else{
-
+    }else{
+      //quick test failed, run exact analysis later
       this.setState({rmsValues: {schedulable: "false", usage: usage}});
       return false;
     }
   }
 
-  //TODO optimize
   rmsSchedule(){
+    //return value
+    var success = true;
+
     //schedule tasks until lcm of all periods
     var lcm = this.LCM(...this.state.taskSet.map(task => task.period));
     //sort tasks by period giving priority based on period
@@ -110,21 +119,39 @@ class RealTimeScheduler extends React.Component{
 
     //init working values of tasks
     for (const task of orderedTaskSet){
-      task.numScheduled = 0;
       task.startTime = 0;
       task.endTime = 0;
+      task.instance = 0;
     }
     
     const toSchedule = new Heap(taskComparator);
     var time = 0;
     var rmsSchedule = [];
 
-    while(time < lcm){
+    while(time < lcm || !toSchedule.isEmpty()){
 
-      //update toSchedule adding tasks when required
-      for (const task of orderedTaskSet){
-        if(time >= task.period * task.numScheduled && !toSchedule.contains(task)){
-          toSchedule.push(task);
+      //update toSchedule adding tasks ready to be scheduled
+      //don't add more after lcm time
+      if(time < lcm){
+        for (const task of orderedTaskSet){
+          if(time >= task.period * task.instance){
+            //create new instance of task and add to toSchedule
+            task.instance++;
+            task.deadline = task.period * task.instance
+            //deep copy of task
+            toSchedule.push(JSON.parse(JSON.stringify(task)));
+          }
+        }
+      }
+
+      //check for tasks that cannot meet their next deadline
+      for (const task of toSchedule.heapArray){
+        //if next deadline < time + computation cannot meet deadline (negative laxity)
+        //mark it as missing deadline and continue scheduling as normal
+        if(task.deadline < time + task.computation){
+          task.colorOverride = "grey"
+          task.comment = "DEADLINE MISSED"
+          success = false;
         }
       }
 
@@ -133,9 +160,8 @@ class RealTimeScheduler extends React.Component{
       if(task){
         task.startTime = time;
         task.endTime = time + task.computation;
-        task.numScheduled++;
-        //make a deep copy of task an put it in the rms schedule
-        rmsSchedule.push(JSON.parse(JSON.stringify(task)));
+        //put task in the rms schedule
+        rmsSchedule.push(task);
 
         time += task.computation;
       }else{
@@ -145,6 +171,105 @@ class RealTimeScheduler extends React.Component{
 
     this.setState({rmsSchedule});
     this.displaySchedule(rmsSchedule, 'rms-lane');
+    return success;
+  }
+
+
+  edf(){
+    var isSchedulable = this.edfSchedulabilityCheck();
+    if(isSchedulable){
+      this.edfSchedule();
+    }else{
+      alert("This task is not schedulable, tasks that missed their deadlines are colored grey. Hover over them for details.")
+      this.edfSchedule();
+    }
+
+  }
+
+  edfSchedulabilityCheck(){
+    if(this.state.taskSet.length === 0){
+      return false;
+    }
+    var usage = 0 ;
+    this.state.taskSet.forEach(task  => {
+      usage += task.computation / task.period;
+    })
+
+    if(usage <= 1){
+      this.setState({edfValues: {schedulable: "true", usage: usage}});
+      return true;
+    }else{
+      this.setState({edfValues: {schedulable: "false", usage: usage}});
+      return false;
+    }
+
+  }
+
+  edfSchedule(){
+     //return value
+     var success = true;
+
+     //schedule tasks until lcm of all periods
+     var lcm = this.LCM(...this.state.taskSet.map(task => task.period));
+     //sort tasks by period giving priority based on period
+     const taskComparator = (a, b) => a.deadline - b.deadline;
+     var orderedTaskSet = this.state.taskSet.sort(taskComparator);
+ 
+     //init working values of tasks
+     for (const task of orderedTaskSet){
+       task.startTime = 0;
+       task.endTime = 0;
+       task.instance = 0;
+     }
+     
+     const toSchedule = new Heap(taskComparator);
+     var time = 0;
+     var edfSchedule = [];
+ 
+     while(time < lcm || !toSchedule.isEmpty()){
+ 
+       //update toSchedule adding tasks ready to be scheduled
+       //dont add more after lcm time
+       if(time < lcm){
+        for (const task of orderedTaskSet){
+          if(time >= task.period * task.instance){
+            //create new instance of task and add to toSchedule
+            task.instance++;
+            task.deadline = task.period * task.instance
+            //deep copy of task
+            toSchedule.push(JSON.parse(JSON.stringify(task)));
+          }
+        }
+      }
+ 
+       //check for tasks that cannot meet their next deadline
+       for (const task of toSchedule.heapArray){
+         //if next deadline < time + computation cannot meet deadline (negative laxity)
+         //mark it as missing deadline and continue scheduling as normal
+         if(task.deadline < time + task.computation){
+           task.colorOverride = "grey"
+           task.comment = "DEADLINE MISSED"
+           success = false;
+         }
+       }
+ 
+       //schedule the highest priority task
+       var task = toSchedule.pop();
+       if(task){
+         task.startTime = time;
+         task.endTime = time + task.computation;
+         //put task in the edf schedule
+         edfSchedule.push(task);
+ 
+         time += task.computation;
+       }else{
+         time++;
+       }
+     }
+ 
+     this.setState({edfSchedule});
+     this.displaySchedule(edfSchedule, 'edf-lane');
+     return success;
   }
 
   parseFile(){
@@ -167,18 +292,39 @@ class RealTimeScheduler extends React.Component{
 
   //converts schedule into a format the timeline library can display
   displaySchedule(eventsToFormat, lane){
-    let events = [];
+    //remove existing events of lane to update
+    let events = this.state.events.filter(function (item){
+      return item.laneId !== lane
+    });
+
+    
 
     for (const task of eventsToFormat){
+
+      //setup task color
+      var taskColor;
+      if(task.colorOverride != null){
+        taskColor = task.colorOverride;
+      }else{
+        taskColor = this.randomColor(task.id)
+      }
+
+      //setup tooltip
+      var taskToolTip = "Task #" + task.id + 
+      "\nStart time:" + task.startTime + "s" +
+      "\nEnd time: " + task.endTime + "s" + 
+      "\nDeadLine: " + task.deadline + "s";
+      if(task.comment != null){
+        taskToolTip += "\n" + task.comment;
+      }
+
       events.push({
-        eventId: task.id + "_" + task.numScheduled,
+        eventId: task.id + "_" + task.instance,
         laneId: lane,
         startTimeMillis: this.zeroTime + (task.startTime * 1000),
         endTimeMillis: this.zeroTime + (task.endTime * 1000),
-        tooltip: "Task #" + task.id + 
-          "\nStart time:" + task.startTime + "s" +
-          "\nEnd time: " + task.endTime + "s",
-        color: this.randomColor(task.id)
+        tooltip: taskToolTip,
+        color: taskColor
       });
     }
 
@@ -204,7 +350,7 @@ class RealTimeScheduler extends React.Component{
 hslToRgb(h, s, l){
   var r, g, b;
 
-  if(s == 0){
+  if(s === 0){
       r = g = b = l; // achromatic
   }else{
       var hue2rgb = function hue2rgb(p, q, t){
@@ -250,11 +396,11 @@ hslToRgb(h, s, l){
         label: 'RMS Schedule',
         color: 'white'
       },
-      /*{
-        laneId: 'dummy-lane',
-        label: 'dummy Lane',
+      {
+        laneId: "edf-lane",
+        label: 'EDF Schedule',
         color: 'white'
-      }*/
+      }
     ]
 
     //Dummy events to populate timeline, required because 
@@ -288,31 +434,81 @@ hslToRgb(h, s, l){
                         <div className={classes.subtitle}>2021</div>
                     </Grid>
 
-                    <Grid item xs={12}>
-                      <a href={"https://github.com/MoonshotSlaybots/PID_Loop_Demo"} target="_blank" rel="noreferrer" className={classes.topButton} style={{textDecoration: 'none', color: 'inherit'}}>
-                          <Button
-                            variant="outlined"
-                            className={classes.button}
-                            startIcon={<GitHubIcon />}
-                          >
-                            View on Github
-                          </Button>
-                      </a>
-
-                    </Grid>
+                    
 
                     <Grid item xs={12} >
                       
                       <p className={classes.para}>
                         This page is a demonstration of a real time system task scheduler which 
-                        shows of concepts learned in my Real-Time Systems class Com S 458 at Iowa State University.                        
+                        shows of concepts learned in my Real-Time Systems class Com S 458 at Iowa State University.
+                        Specifically, this tool performs task scheduling for an arbitrary task set using rate monotonic
+                        scheduling (RMS), or earliest deadline first (EDF) scheduling.                        
+                      </p>
+
+                      <h2 className={classes.header}>Schedulability</h2>
+                      
+                      <h3 className={classes.header}>RMS</h3>
+                      
+                      <p className={classes.para}>
+                        The RMS algorithm first runs a quick schedulability check to determine if the task set is schedulable.
+                        This quick test is sufficient for schedulability however it is not necessary. In other words, if the 
+                        quick test fails, the task set could still be schedulable, so we try scheduling it to know for sure.
+                        If the quick test passes, then we know the task set is definitely schedulable.
                       </p>
 
                       <p className={classes.para}>
-                        To begin, select a prepared task set to schedule or upload your own JSON file containing a task set. 
-                        The file should be formatted as follows:  
-                         TODO format JSON code
+                        The schedulability test for RMS finds the utilization of all tasks (period / computation time), and
+                        if the total utilization is less than n * (2 ^ 1/n) - 1, where n is the number of tasks, then the 
+                        task set is schedulable.
                       </p>
+
+                      <h3 className={classes.header}>EDF</h3>
+                      
+                      <p className={classes.para}>
+                        The EDF algorithm also runs a schedulability test, but this one is necessary and sufficient. Meaning 
+                        if the test fails then it is definitely not schedulable, if it passes it is definitely schedulable.
+                      </p>
+
+                      <p className={classes.para}>
+                        The schedulability check for EDF is similar to RMS. It finds the total utilization of the task set. 
+                        However, because EDF is a little more efficient than RMS, if the total utilization is less than 1
+                        then the task set is schedulable.
+                      </p>
+
+                      <h2 className={classes.header}>Lets Start!</h2>
+
+                      <p className={classes.para}>
+                        To begin, download an example JSON task set or upload your own JSON file containing a task set. 
+                        The file should be formatted as follows (note all time units are in seconds but can include decimals):  
+                      </p>
+                    
+                      <pre className={classes.para}>{`
+      [
+        {
+            "id":1,
+            "computation":20,
+            "period":50
+        },
+        {
+            "id":2,
+            "computation":12,
+            "period":70
+        }
+      ]
+                      `}</pre>
+                      <p className={classes.para}>
+                        The id of each task must be a unique positive integer and is used to identify the task among the others.
+                        The computation value is the number of seconds this tasks takes to execute. And the period of the
+                        task is how often it is ready to execute. Note for this tool, the deadline of each task is assumed to be
+                        the same as the period.
+                      </p>
+
+                      
+                      <a href="/doc/RealTimeSchedulerExamples/Example_Task_Sets.zip" download="Example_Task_Sets.zip" style={{textDecoration: 'none', color: 'inherit'}}>
+                        <Button variant="outlined" component="span" className={classes.button}>
+                          Download example task sets
+                        </Button>
+                      </a>
                      
                       <input
                           accept=".json"
@@ -320,15 +516,25 @@ hslToRgb(h, s, l){
                           style={{ display: 'none' }}
                           id="userInputFile"
                           type="file"
-                          onChange={() => {this.parseFile(); }}
+                          //set target to nothing at end so will always trigger even if file name is same
+                          onChange={(event) => {this.parseFile(); event.target.value=''}}
                         />
                       <label htmlFor="userInputFile">
                         <Button variant="outlined" component="span" className={classes.button}>
                           Upload file: {this.state.inputFileName}
                         </Button>
                       </label> 
+
                       <Button variant="outlined" component="span" className={classes.button} onClick={() => {this.rms(); }}>
                         Run RMS
+                      </Button>
+
+                      <Button variant="outlined" component="span" className={classes.button} onClick={() => {this.edf(); }}>
+                        Run EDF
+                      </Button>
+
+                      <Button variant="outlined" component="span" className={classes.button} onClick={() => {this.setState({events:[]}) }}>
+                        Clear Display
                       </Button>
  
 
@@ -348,7 +554,7 @@ hslToRgb(h, s, l){
                       </p>
 
                       <Timeline width={1000}
-                        height={400} 
+                        height={600} 
                         //concat the dummyEvents with the real events, events param 
                         //cannot be empty
                         events={dummyEvents.concat(this.state.events)} 
