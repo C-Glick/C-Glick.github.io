@@ -1,0 +1,12 @@
+[
+    {
+        "id":1,
+        "computation":7.5,
+        "period":14
+    },
+    {
+        "id":2,
+        "computation":4.5,
+        "period":10.5
+    }
+]
