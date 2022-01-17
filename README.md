@@ -17,3 +17,11 @@ Feel free to explore it to learn more about me!
     - Fill in with the `under construction` page for now
     - Once the page is completed, import it from the pages folder and use it for the route
 - Create a new .js file for the page under `src/pages`, use an existing page as a template
+
+### Deploying
+
+To deploy the current local build,
+**Run: `npm run deploy`**
+
+The Node module [gh-pages](https://www.npmjs.com/package/gh-pages) is used to automate the process. 
+The npm keyword "deploy" is aliased to `gh-pages -d build` in the package.json which builds and deploys the project to this repo's pages section.
